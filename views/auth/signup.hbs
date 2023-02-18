@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="row justify-content-center pt-3">
+
+        <div class="col-md-6 ">
+
+            <h1 class="text-center">Sign Up</h1>
+            <hr>
+
+            <form action="/signup" method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                    <div class="form-text">Required</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    <div class="form-text">Required</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="userPwd" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="userPwd" name="userPwd">
+                    <div class="form-text">Required</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="avatar" class="form-label">Avatar image</label>
+                    <input type="file" class="form-control" id="avatar" name="avatar">
+                    <div class="form-text">Enter the URL of your desired profile picture (not required)</div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark block">Send</button>
+                </div>
+
+                {{#if errorMessage}}
+                <div id="errorMessage">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+
+            </form>
+        </div>
+    </div>
+
+</div>
