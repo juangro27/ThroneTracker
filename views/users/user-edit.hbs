@@ -3,25 +3,64 @@
 
         <div class="col-md-6 p-4">
 
-            <h2>Edit {{username}}</h2>
-            <img class="card-img-top user-photo-details" src="{{avatar}}" alt="{{username}} profile photo">
-            <form class="row g-3" action="/users/{{id}}/edit" enctype="multipart/form-data" method="POST">
-                <div class="col-12">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" value="{{username}}">
+            <h2>Edit {{user.firstName}} {{user.lastName}}</h2>
+            <img class="card-img-top user-photo-details" src="{{user.avatar}}"
+                alt="{{user.firstName}} {{user.lastName}} profile photo">
+
+            <form action="/users/{{user._id}}/edit" enctype="multipart/form-data" method="POST">
+
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" name="firstName" class="form-control" id="firstName"
+                            value="{{user.firstName}}">
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" name="lastName" class="form-control" id="lastName" value="{{user.lastName}}">
+                    </div>
                 </div>
+
                 <div class="mb-3">
                     <label for="avatar" class="form-label">Avatar</label>
-                    <input type="file" class="form-control" id="avatar" name="avatar" value="{{avatar}}">
+                    <input type="file" class="form-control" id="avatar" name="avatar" value="{{user.avatar}}">
                 </div>
-                <div class="col-md-12">
-                    <label for="email" class="form-label">Email:</label>
-                    <input type="email" name="email" class="form-control" id="email" value="{{email}}">
+
+                <div class="mb-3">
+                    <label for="role" class="form-label">Role</label>
+                    <select class="form-select" id="role" name="role">
+                        <option value="{{user.role}}">Seleccionar...</option>
+                        <option value="USER">USER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
                 </div>
+
+                {{!-- <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="oldPwd" class="form-label">Old password</label>
+                        <input type="password" class="form-control" id="oldPwd" name="oldPwd">
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="newPwd" class="form-label">New password</label>
+                        <input type="password" class="form-control" id="newPwd" name="newPwd">
+                    </div>
+                </div> --}}
+
+                <input type="hidden" name="_id" value="{{user._id}}">
+
                 <div class="col-12">
                     <button type="submit" class="btn btn-success">Update</button>
-                    <td><a href="/students/{{id}}" class="btn btn-dark">Back</a></td>
+                    <td><a href="/users/my-profile" class="btn btn-dark">Back</a></td>
                 </div>
+
+                {{#if errorMessage}}
+                <div id="errorMessage">
+                    <p>{{errorMessage}}</p>
+                </div>
+                {{/if}}
+
             </form>
         </div>
     </div>

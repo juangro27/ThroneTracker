@@ -27,7 +27,7 @@ router.post('/contact', (req, res, next) => {
 
 
 router.get("/about-us", (req, res, next) => {
-  res.send("GET PÁGINA DE SOBRE NOSOTROS")
+  res.render('about-us')
 })
 
 module.exports = router

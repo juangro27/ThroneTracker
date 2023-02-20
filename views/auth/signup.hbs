@@ -9,10 +9,18 @@
 
             <form action="/signup" method="POST" enctype="multipart/form-data">
 
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username">
-                    <div class="form-text">Required</div>
+                <div class="row">
+                    <div class="col-6 mb-3">
+                        <label for="firstName" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName">
+                        <div class="form-text">Required</div>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <label for="lastName" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName">
+                        <div class="form-text">Required</div>
+                    </div>
                 </div>
 
                 <div class="mb-3">
@@ -46,5 +54,4 @@
             </form>
         </div>
     </div>
-
 </div>

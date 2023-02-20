@@ -1,11 +1,19 @@
-const checkEmptyFields = (type) => (req, res, next) => {
+const checkFields = (type) => (req, res, next) => {
     if (type === 'signup' || type === 'login') {
-        if (type === '${type}`' && !req.body.username) {
-            res.render(`auth/${type}`, { errorMessage: `Username can't be empty` })
+        if (type === 'signup' && !req.body.firstName) {
+            res.render(`auth/${type}`, { errorMessage: `First name can't be empty` })
             return
         }
-        else if (type === 'signup' && req.body.username.length <= 3) {
-            res.render(`auth/${type}`, { errorMessage: `Username must be higher than 3 characters` })
+        else if (type === 'signup' && !req.body.lastName) {
+            res.render(`auth/${type}`, { errorMessage: `Last name can't be empty` })
+            return
+        }
+        else if (type === 'signup' && req.body.firstName.length <= 3) {
+            res.render(`auth/${type}`, { errorMessage: `First name must be higher than 3 characters` })
+            return
+        }
+        else if (type === 'signup' && req.body.lastName.length <= 3) {
+            res.render(`auth/${type}`, { errorMessage: `Last name must be higher than 3 characters` })
             return
         }
         else if (!req.body.email) {
@@ -55,4 +63,4 @@ const canEdit = (req, res, next) => {
     }
 }
 
-module.exports = { checkEmptyFields, isLoggedIn, isLoggedOut, isAuthorized, canEdit }
+module.exports = { checkFields, isLoggedIn, isLoggedOut, isAuthorized, canEdit }
