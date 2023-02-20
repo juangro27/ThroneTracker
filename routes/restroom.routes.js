@@ -20,6 +20,9 @@ router.get("/", (req, res, next) => {
 router.get("/map", (req, res, next) => {
     res.send('GET MAPA DE BAÑOS')
 })
+router.post("/map", (req, res, next) => {
+    res.send(req.body)
+})
 
 router.get("/:id", (req, res, next) => {
     res.send('GET DETALLES DE BAÑOS')
