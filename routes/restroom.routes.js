@@ -1,9 +1,21 @@
 const express = require('express')
 const router = express.Router()
+const RestroomsApi = require("../services/restroomsApi.service");
+const parseRestrooms = require("../utils/parseRestrooms")
+const checkRestrooms = require('../utils/checkRestrooms')
 
 router.get("/", (req, res, next) => {
-    res.send('GET LISTA DE BAÑOS')
+    RestroomsApi
+        .getAllRestrooms(4)
+        .then(({ data }) => {
+
+            const restroomsParsed = parseRestrooms(data)
+            return checkRestrooms(restroomsParsed)
+        })
+        .then(restrooms => res.send(restrooms))
+        .catch(err => next(err))
 })
+
 
 router.get("/map", (req, res, next) => {
     res.send('GET MAPA DE BAÑOS')

@@ -48,10 +48,10 @@ const restroomSchema = new Schema(
     },
     votes: {
       type: Object,
-      downvote: {
+      down: {
         type: Number,
       },
-      upvote: {
+      up: {
         type: Number,
       },
       votes: [{

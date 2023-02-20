@@ -1,4 +1,4 @@
-const checkEmptyFields = (type) => (req, res, next) => {
+const checkFields = (type) => (req, res, next) => {
     if (type === 'signup' || type === 'login') {
         if (type === '${type}`' && !req.body.username) {
             res.render(`auth/${type}`, { errorMessage: `Username can't be empty` })
@@ -55,4 +55,4 @@ const canEdit = (req, res, next) => {
     }
 }
 
-module.exports = { checkEmptyFields, isLoggedIn, isLoggedOut, isAuthorized, canEdit }
+module.exports = { checkFields, isLoggedIn, isLoggedOut, isAuthorized, canEdit }

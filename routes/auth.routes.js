@@ -1,13 +1,13 @@
 const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const User = require("../models/User.model")
-const { checkEmptyFields, isLoggedOut, isLoggedIn } = require('../middlewares/auth-rules')
+const { checkFields, isLoggedOut, isLoggedIn } = require('../middlewares/auth-rules')
 const fileUploader = require('../config/cloudinary.config')
 const saltRounds = 10
 
 router.get('/signup', isLoggedOut, (req, res, next) => res.render('auth/signup'))
 
-router.post('/signup', isLoggedOut, fileUploader.single('avatar'), checkEmptyFields('signup'), (req, res, next) => {
+router.post('/signup', isLoggedOut, fileUploader.single('avatar'), checkFields('signup'), (req, res, next) => {
     const { email, username, userPwd } = req.body
     let avatar;
     if (req.file) avatar = req.file.path
@@ -43,7 +43,7 @@ router.post('/signup', isLoggedOut, fileUploader.single('avatar'), checkEmptyFie
 
 router.get('/login', isLoggedOut, (req, res, next) => res.render('auth/login'))
 
-router.post('/login', isLoggedOut, checkEmptyFields("login"), (req, res, next) => {
+router.post('/login', isLoggedOut, checkFields("login"), (req, res, next) => {
     const { userPwd, email } = req.body
 
     User
