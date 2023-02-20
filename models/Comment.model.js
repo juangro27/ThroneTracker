@@ -7,7 +7,12 @@ const commentSchema = new Schema(
       required: true,
       trim: true
     },
-    owner_id: {
+    restroom: {
+      ref: 'restroom',
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
+    owner: {
       ref: 'user',
       type: Schema.Types.ObjectId
     },
@@ -17,6 +22,6 @@ const commentSchema = new Schema(
   }
 );
 
-const Comment = model("comment", userSchema);
+const Comment = model("comment", commentSchema);
 
 module.exports = Comment;

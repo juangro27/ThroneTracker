@@ -1,8 +1,9 @@
 | METHOD | PATH                               | DESCRIPTION                                 | JSON |
 |--------|------------------------------------|---------------------------------------------|------|
 | GET    | /                                  | index page render                           |      |
-| GET    | /contact                           |  contact page render                        |      |
-| GET    | /about-us                          |  about us page render                       |      |
+| GET    | /contact                           | contact page render                         |      |
+| POST   | /contact                           | contact page handler                        |      |
+| GET    | /about-us                          | about us page render                        |      |
 | GET    | /signup                            | signup form render                          |      |
 | POST   | /signup                            | signup form handler                         |      |
 | GET    | /login                             | signin form render                          |      |

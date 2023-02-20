@@ -2,60 +2,67 @@ const { Schema, model } = require("mongoose");
 
 const restroomSchema = new Schema(
   {
-    id: {
+    reference: {
       type: String
     },
     name: {
       type: String,
     },
-    street: {
+    description: {
       type: String,
     },
-    city: {
-      type: String,
+    address: {
+      street: {
+        type: String,
+      },
+      city: {
+        type: String,
+      },
+      state: {
+        type: String,
+      },
+      country: {
+        type: String
+      },
+      indications: {
+        type: String,
+      },
     },
-    state: {
-      type: String,
+    features: {
+      changing_table: {
+        type: Boolean
+      },
+      accessible: {
+        type: Boolean,
+      },
+      unisex: {
+        type: Boolean,
+      },
     },
-    accessible: {
-      type: Boolean,
+
+    location: {
+      type: {
+        type: String
+      },
+      coordinates: [Number]
     },
-    unisex: {
-      type: Boolean,
-    },
-    directions: {
-      type: String,
-    },
-    comment: {
-      type: String,
-    },
-    latitude: {
-      type: String,
-    },
-    longitude: {
-      type: String,
-    },
-    downvote: {
-      type: Number,
-    },
-    upvote: {
-      type: Number,
-    },
-    country: {
-      type: String
-    },
-    changing_table: {
-      type: Boolean
+    votes: {
+      type: Object,
+      downvote: {
+        type: Number,
+      },
+      upvote: {
+        type: Number,
+      },
+      votes: [{
+        ref: 'vote',
+        type: Schema.Types.ObjectId
+      }]
     },
     comments: [{
       ref: 'comment',
       type: Schema.Types.ObjectId
     }],
-    votes: [{
-      ref: 'vote',
-      type: Schema.Types.ObjectId
-    }]
-
   },
   {
     timestamps: true

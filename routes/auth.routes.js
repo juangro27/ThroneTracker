@@ -66,7 +66,6 @@ router.post('/login', isLoggedOut, checkEmptyFields("login"), (req, res, next) =
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
     req.session.destroy(() => res.redirect('/'))
-        .catch(err => next(err))
 })
 
 

@@ -8,12 +8,12 @@ const voteSchema = new Schema(
       required: true,
       trim: true
     },
-    owner_id: {
+    owner: {
       ref: 'user',
       type: Schema.Types.ObjectId,
       required: true,
     },
-    restroom_id: {
+    restroom: {
       ref: 'restroom',
       type: Schema.Types.ObjectId,
       required: true,
