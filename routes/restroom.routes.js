@@ -1,5 +1,5 @@
-const express = require('express')
-const router = express.Router()
+const router = require("express").Router()
+const Restroom = require("../models/Restroom.model")
 const RestroomsApi = require("../services/restroomsApi.service");
 const { checkRestrooms } = require('../utils/checkRestrooms')
 const { parseRestrooms } = require('../utils/parseRestrooms');
@@ -40,7 +40,7 @@ router.post("/location-list", (req, res, next) => {
 
 
 router.get("/map", (req, res, next) => {
-    res.send(req.query)
+    res.render('req.query')
 })
 
 router.post("/map", (req, res, next) => {
@@ -48,7 +48,13 @@ router.post("/map", (req, res, next) => {
 })
 
 router.get("/:id", (req, res, next) => {
-    res.send('GET DETALLES DE BAÑOS')
+
+    const { id } = req.params
+
+    Restroom
+        .findById(id)
+        .then(restroom => res.render('restrooms/restroom-details', restroom))
+        .catch(err => next(err))
 })
 
 router.post("/:id/comments", (req, res, next) => {

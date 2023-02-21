@@ -1,17 +1,30 @@
-<h1>name: {{name}}</h1>
+<div class="container">
+    <h1>name: {{name}}</h1>
+    <hr>
 
-<p>reference: {{reference}}</p>
-<p>description: {{description}}</p>
-<p>description: {{description}}</p>
-<p>street: {{address.street}}</p>
-<p>city: {{address.city}}</p>
-<p>state: {{address.state}}</p>
-<p>country: {{address.country}}</p>
-<p>indications: {{address.indications}}</p>
-<p>changing_table: {{features.changing_table}}</p>
-<p>accessible: {{features.accessible}}</p>
-<p>unisex: {{features.unisex}}</p>
-<p>votesDown: {{votes.down}}</p>
-<p>votesUp: {{votes.up}}</p>
-<p>votes: {{votes.votes}}</p>
-<p>comments: {{comments}}</p>
+    <p>reference: {{reference}}</p>
+    <p>description: {{description}}</p>
+    <p>street: {{address.street}}</p>
+    <p>city: {{address.city}}</p>
+    <p>state: {{address.state}}</p>
+    <p>country: {{address.country}}</p>
+    <p>indications: {{address.indications}}</p>
+    <p>changing_table: {{features.changing_table}}</p>
+    <p>accessible: {{features.accessible}}</p>
+    <p>unisex: {{features.unisex}}</p>
+    <p>votesDown: {{votes.down}}</p>
+    <p>votesUp: {{votes.up}}</p>
+    <p>votes: {{votes.votes}}</p>
+    <p>comments: {{comments}}</p>
+    <p class="restroom" data-id="{{id}}">ID: {{id}}</p>
+
+    <h1>Mapa</h1>
+    <hr>
+    <div id="map"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/map.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&callback=initMap"></script>
