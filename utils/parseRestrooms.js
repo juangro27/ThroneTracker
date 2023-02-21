@@ -1,9 +1,28 @@
 const parseRestrooms = restroomsArray => {
-    const restroomsParsed = restroomsArray.map(restroom => {
-        const { id: reference, name, comment: description, street, city, state, country, directions: indications, changing_table, accessible, unisex, latitude, longitude, downvote: down, upvote: up } = restroom
+
+    return restroomsArray.map(restroom => {
+
+        const {
+            id: reference,
+            name,
+            comment: description,
+            street,
+            city,
+            state,
+            country,
+            directions: indications,
+            changing_table,
+            accessible,
+            unisex,
+            latitude,
+            longitude,
+            downvote: down,
+            upvote: up
+        } = restroom
+
+
 
         const restroomObject = {
-
             reference,
             name,
             description,
@@ -21,7 +40,7 @@ const parseRestrooms = restroomsArray => {
             },
             location: {
                 type: 'Point',
-                coordinates: [latitude, longitude]
+                coordinates: [longitude, latitude]
             },
             votes: {
                 down,
@@ -33,7 +52,6 @@ const parseRestrooms = restroomsArray => {
 
         return restroomObject
     })
-    return restroomsParsed
 }
 
-module.exports = parseRestrooms
+module.exports = { parseRestrooms }

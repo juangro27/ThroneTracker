@@ -1,4 +1,3 @@
-const trElements = [...document.querySelectorAll("#restroomID")]
-// const trElementsArray = Array.prototype.slice.call(trElements)
-const restroomsIDs = trElements.map(element => element.getAttribute("reference"))
+const trElements = [...document.querySelectorAll(".restroomID")]
+const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 console.log(restroomsIDs)

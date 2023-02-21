@@ -7,7 +7,6 @@ router.get("/", (req, res, next) => {
 })
 
 router.get("/contact", (req, res, next) => {
-
   res.render("contact")
 })
 
@@ -22,7 +21,7 @@ router.post('/contact', (req, res, next) => {
     html: `<b>${message}</b>`
   })
     .then(info => res.render('email-sent', { email, subject, message, info }))
-    .catch(error => console.log(error));
+    .catch(error => next(error));
 })
 
 

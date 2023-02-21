@@ -9,30 +9,26 @@ const saltRounds = 10
 router.get('/signup', isLoggedOut, (req, res, next) => res.render('auth/signup'))
 
 router.post('/signup', isLoggedOut, fileUploader.single('avatar'), checkFields('signup'), (req, res, next) => {
-    const { email, userPwd } = req.body
 
-    let avatar;
-    if (req.file) avatar = req.file.path
+    const { email, userPwd, firstName, lastName } = req.body
 
-    const promises = [User.findOne({ email })]
+    let avatar = req.file?.path
 
-    Promise
-        .all(promises)
-        .then(([email]) => {
-            if (email) {
+    User
+        .findOne({ email })
+        .then(user => {
+            if (user) {
                 res.render('auth/signup', { errorMessage: 'Email already registered' })
                 return
             }
+            return bcrypt.genSalt(saltRounds)
         })
-        .catch(error => next(error))
-
-    bcrypt
-        .genSalt(saltRounds)
         .then(salt => bcrypt.hash(userPwd, salt))
-        .then(password => User.create({ ...req.body, avatar, password }))
+        .then(password => User.create({ firstName, lastName, email, avatar, password }))
         .then(user => req.session.currentUser = user)
         .then(() => res.redirect('/'))
         .catch(err => next(err))
+
 })
 
 

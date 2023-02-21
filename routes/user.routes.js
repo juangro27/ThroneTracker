@@ -8,26 +8,28 @@ const saltRounds = 10
 
 
 router.get("/", (req, res, next) => {
-
+    //proyectar lo utilizado
     User
         .find()
         .sort({ firstName: 1 })
         .then(user => res.render('users/list', { user }))
-        .catch(err => console.log(err))
+        .catch(err => next(err))
 })
 
 
 router.get("/my-profile", isLoggedIn, isAuthorized("USER"), (req, res, next) => {
-    const id = req.session.currentUser._id
+
+    const { _id } = req.session.currentUser
 
     User
-        .findById(id)
+        .findById(_id)
         .then(user => res.render('users/user-details', user))
         .catch(err => next(err))
 })
 
 
 router.get("/:id", isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
 
     User
@@ -38,6 +40,7 @@ router.get("/:id", isLoggedIn, (req, res, next) => {
 
 
 router.get("/:id/edit", (req, res, next) => {
+
     const { id } = req.params
 
     User
@@ -47,11 +50,11 @@ router.get("/:id/edit", (req, res, next) => {
 })
 
 router.post("/:id/edit", fileUploader.single('avatar'), checkEditFields, (req, res, next) => {
+
     const { firstName, lastName, role, oldPwd, newPwd } = req.body
     const { id } = req.params
 
-    let avatar;
-    if (req.file) avatar = req.file.path
+    let avatar = req.file?.path
 
     User
         .findByIdAndUpdate(id, { firstName, lastName, avatar, role })
@@ -81,6 +84,7 @@ router.post("/:id/edit", fileUploader.single('avatar'), checkEditFields, (req, r
 
 
 router.get("/:id/delete", (req, res, next) => {
+
     const { id } = req.params
 
     User

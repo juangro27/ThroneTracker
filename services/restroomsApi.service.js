@@ -1,5 +1,4 @@
 const axios = require('axios');
-const parseRestrooms = require('../utils/parseRestrooms');
 
 class ApiService {
     static _instace
@@ -8,6 +7,7 @@ class ApiService {
             baseURL: 'www.refugerestrooms.org/api'
         })
     }
+
     static getInstance() {
         if (!this._instance) {
             this._instance = new ApiService();
@@ -16,19 +16,12 @@ class ApiService {
     }
 
     getAllRestrooms = (page = 1, per_page = 10, offset = 0) => {
-        return new Promise((resolve, reject) => {
-            this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms?page=${page}&per_page=${per_page}&offset=${offset}`)
-                .then(({ data }) => resolve(parseRestrooms(data)))
-                .catch(reject)
-        })
+        return this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms?page=${page}&per_page=${per_page}&offset=${offset}`)
 
     }
     getRestroomsByLocation = (lat, lng, page = 1, per_page = 10, offset = 0,) => {
-        return new Promise((resolve, reject) => {
-            this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=${page}&per_page=${per_page}&offset=${offset}&lat=${lat}&lng=${lng}`)
-                .then(({ data }) => resolve(parseRestrooms(data)))
-                .catch(reject)
-        })
+        return this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=${page}&per_page=${per_page}&offset=${offset}&lat=${lat}&lng=${lng}`)
+
 
     }
 }

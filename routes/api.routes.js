@@ -9,7 +9,7 @@ router.get("/restrooms/:id/", (req, res, next) => {
         .then(restroom => {
             res.json(restroom)
         })
-        .catch(err => next(err))
+        .catch(err => res.json(err))
 })
 
 
