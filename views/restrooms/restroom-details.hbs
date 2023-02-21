@@ -1,4 +1,5 @@
 <div class="container">
+    <div id="map"></div>
     <h1>name: {{name}}</h1>
     <hr>
 
@@ -15,12 +16,30 @@
     <p>votesDown: {{votes.down}}</p>
     <p>votesUp: {{votes.up}}</p>
     <p>votes: {{votes.votes}}</p>
-    <p>comments: {{comments}}</p>
+
     <p class="restroom" data-id="{{id}}">ID: {{id}}</p>
 
-    <h1>Mapa</h1>
+    {{#each comments}}
+    <p>{{comment}}</p>
+    <p>{{owner.firstName}} {{owner.lastName}}</p>
+    <img style="width: 80px; height: 80px" src="{{owner.avatar}}" alt="{{owner.firstName}}, {{owner.lastName}}">
+    <p>{{createdAt}}</p>
+    <a href="/restrooms/{{../id}}/comments/{{id}}/edit">Edit</a>
+    <a href="/restrooms/{{../id}}/comments/{{id}}/delete">Delete</a>
+    <p></p>
+    <br>
+    {{/each}}
+
+
+    <form action="/restrooms/{{id}}/comments/create" method="post">
+        <label for="comment">Comment:</label>
+        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+        <input type="submit" value="Send">
+    </form>
+
+
+
     <hr>
-    <div id="map"></div>
 
 </div>
 
