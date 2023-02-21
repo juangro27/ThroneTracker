@@ -11,18 +11,4 @@ function initMap() {
         document.getElementById('lng').value = place.geometry.location.lng();
     });
 
-    // document.addEventListener("input", event => {
-    //     const address = event.target.value
-    //     console.log(address)
-    //     geocoder
-    //         .geocode({ address })
-    //         .then((response) => {
-    //             if (response.results[0]) {
-    //                 console.log(response)
-    //             } else {
-    //                 console.error("No results found");
-    //             }
-    //         })
-    //         .catch((e) => console.error("Geocoder failed due to: " + e));
-    // })
 }

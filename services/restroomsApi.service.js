@@ -23,8 +23,13 @@ class ApiService {
         })
 
     }
-    getRestroomsByLocation = (page = 1, per_page = 10, offset = 0, lat, lng) => {
-        return this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=${page}&per_page=${per_page}&offset=${offset}&lat=${lat}&lng=${lng}`)
+    getRestroomsByLocation = (lat, lng, page = 1, per_page = 10, offset = 0,) => {
+        return new Promise((resolve, reject) => {
+            this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=${page}&per_page=${per_page}&offset=${offset}&lat=${lat}&lng=${lng}`)
+                .then(({ data }) => resolve(parseRestrooms(data)))
+                .catch(reject)
+        })
+
     }
 }
 
