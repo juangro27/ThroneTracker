@@ -1,0 +1,48 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <h1>Restrooms list</h1>
+            <hr>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Changing table</th>
+                        <th scope="col">Accessible</th>
+                        <th scope="col">Unisex</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each restrooms}}
+
+                    <tr>
+                        <td hidden id="restroomID" reference="{{id}}"></td>
+                        <td>{{name}}</td>
+                        <td>{{address.street }},{{address.city}}, {{address.state}}</td>
+                        <td>{{features.changing_table}}</td>
+                        <td>{{features.accessible}}</td>
+                        <td>{{features.unisex}}</td>
+                        <td> <a href=" /restrooms/{{_id}}">Details</a>
+                        </td>
+                    </tr>
+
+                    {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <a href="/" class="btn btn-dark">Volver a inicio</a>
+
+</div>
+<script src="/js/test.js"></script>

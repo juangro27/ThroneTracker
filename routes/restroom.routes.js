@@ -11,9 +11,25 @@ router.get("/", (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get("/location-list", (req, res, next) => {
+    res.render("index", { errorMessage: `The address is required` })
+})
+router.post("/location-list", (req, res, next) => {
+    if (req.query || req.body) {
+        const { lat, lng } = req.body
+        RestroomsApi
+            .getRestroomsByLocation(lat, lng)
+            .then((data) => checkRestrooms(data))
+            .then(restrooms => res.render('restrooms/restrooms-list', { restrooms }))
+            .catch(err => next(err))
+    } else {
+        res.render("index", { errorMessage: `The address is required` })
+    }
+})
+
 
 router.get("/map", (req, res, next) => {
-    res.send('GET MAPA DE BAÑOS')
+    res.send(req.query)
 })
 router.post("/map", (req, res, next) => {
     res.send(req.body)

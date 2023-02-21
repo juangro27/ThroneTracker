@@ -4,8 +4,12 @@
     <hr>
 
     <div class="row justify-content-center pt-3">
-
-        <form action="/restrooms/map" method="POST">
+        {{#if errorMessage}}
+        <div id="errorMessage">
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/if}}
+        <form action="/restrooms/location-list" method="POST">
 
             <div class="col-md-6">
                 <div class="mb-3">
