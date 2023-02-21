@@ -7,6 +7,8 @@
             <h1>Restrooms list</h1>
             <hr>
 
+            <div id="map"></div>
+
             <table class="table">
                 <thead>
                     <tr>
@@ -24,7 +26,7 @@
                     {{#each restrooms}}
 
                     <tr>
-                        <td hidden class="restroomID" data-id="{{id}}"></td>
+                        <td hidden class="restroom" data-id="{{id}}"></td>
                         <td>{{name}}</td>
                         <td>{{address.street }},{{address.city}}, {{address.state}}</td>
                         <td>{{features.changing_table}}</td>
@@ -46,4 +48,8 @@
     <a href="/" class="btn btn-dark">Volver a inicio</a>
 
 </div>
-<script src="/js/test.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/map.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&callback=initMap"></script>

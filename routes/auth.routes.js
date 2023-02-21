@@ -56,6 +56,8 @@ router.post('/login', isLoggedOut, checkFields("login"), (req, res, next) => {
 
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
+
+
     req.session.destroy(() => res.redirect('/'))
 })
 
