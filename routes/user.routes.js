@@ -53,6 +53,11 @@ router.post("/:id/edit", fileUploader.single('avatar'), checkEditFields, (req, r
     let avatar;
     if (req.file) avatar = req.file.path
 
+    User
+        .findByIdAndUpdate(id, { firstName, lastName, avatar, role })
+        .then(() => res.redirect(`/users/my-profile`))
+        .catch(err => next(err))
+
     // User
     //     .findById(id)
     //     .then(user => {
@@ -72,10 +77,6 @@ router.post("/:id/edit", fileUploader.single('avatar'), checkEditFields, (req, r
     //     })
     //     .catch(err => next(err))
 
-    User
-        .findByIdAndUpdate(id, { firstName, lastName, avatar, role })
-        .then(() => res.redirect(`/users/my-profile`))
-        .catch(err => next(err))
 })
 
 
