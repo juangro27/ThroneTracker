@@ -21,4 +21,8 @@ module.exports = app => {
             })
         })
     );
+    app.use((req, res, next) => {
+        res.locals.currentUser = req.session.currentUser
+        next()
+    })
 };
