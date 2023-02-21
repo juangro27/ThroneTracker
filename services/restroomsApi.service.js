@@ -1,4 +1,5 @@
-const axios = require('axios')
+const axios = require('axios');
+const parseRestrooms = require('../utils/parseRestrooms');
 
 class ApiService {
     static _instace
@@ -15,7 +16,11 @@ class ApiService {
     }
 
     getAllRestrooms = (page = 1, per_page = 10, offset = 0) => {
-        return this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms?page=${page}&per_page=${per_page}&offset=${offset}`)
+        return new Promise((resolve, reject) => {
+            this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms?page=${page}&per_page=${per_page}&offset=${offset}`)
+                .then(({ data }) => resolve(parseRestrooms(data)))
+                .catch(reject)
+        })
 
     }
     getRestroomsByLocation = (page = 1, per_page = 10, offset = 0, lat, lng) => {

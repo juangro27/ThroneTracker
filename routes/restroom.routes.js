@@ -1,17 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const RestroomsApi = require("../services/restroomsApi.service");
-const parseRestrooms = require("../utils/parseRestrooms")
 const checkRestrooms = require('../utils/checkRestrooms')
 
 router.get("/", (req, res, next) => {
     RestroomsApi
         .getAllRestrooms(4)
-        .then(({ data }) => {
-
-            const restroomsParsed = parseRestrooms(data)
-            return checkRestrooms(restroomsParsed)
-        })
+        .then((data) => checkRestrooms(data))
         .then(restrooms => res.send(restrooms))
         .catch(err => next(err))
 })

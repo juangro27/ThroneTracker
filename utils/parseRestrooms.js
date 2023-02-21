@@ -1,6 +1,5 @@
 const parseRestrooms = restroomsArray => {
-
-    restroomsParsed = restroomsArray.map(restroom => {
+    const restroomsParsed = restroomsArray.map(restroom => {
         const { id: reference, name, comment: description, street, city, state, country, directions: indications, changing_table, accessible, unisex, latitude, longitude, downvote: down, upvote: up } = restroom
 
         const restroomObject = {
