@@ -1,10 +1,20 @@
 const centerCoords = { lat: 40.392521370648154, lng: - 3.6989879718518366 }
+const trElements = [...document.querySelectorAll(".restroom")]
+const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 let myMap
+const restroomCoordsPromises = restroomsIDs.map(restroom =>
+  axios
+    .get(`/api/restroom/${restroom}`)
+)
 
-axios
-  .get('/api/place')
-  .then(({ data }) => setMarkers(data))
-  .catch(err => next(err))
+Promise.all(restroomCoordsPromises)
+  .then(restroom => {
+    restroom.forEach(restroom => {
+      const [lng, lat] = restroom.location.coordinates
+      setMarkers(lng, lat)
+    })
+  })
+  .catch(err => console.error(err))
 
 function initMap() {
 
@@ -18,16 +28,13 @@ function initMap() {
 }
 
 
-function setMarkers(place) {
+function setMarkers(lng, lat) {
 
   place.forEach(elm => {
 
-    const lat = elm.location.coordinates[0]
-    const lng = elm.location.coordinates[1]
-
     new google.maps.Marker({
       map: myMap,
-      position: { lat, lng },
+      position: { lng, lat },
       title: elm.name
     })
   })
