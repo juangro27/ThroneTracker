@@ -1,7 +1,7 @@
 const trElements = [...document.querySelectorAll(".restroom")]
 const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 
-const centerCoords = JSON.parse(localStorage.getItem('location'))
+const originCoords = JSON.parse(localStorage.getItem('location'))
 
 let myMap
 
@@ -18,8 +18,11 @@ Promise.all(restroomCoordsPromises)
 
       setMarkers({ name, coordinates })
     })
+    return data
   })
+  .then(data => getRouteDetails(data))
   .catch(err => console.error(err))
+
 
 function initMap() {
 
@@ -27,10 +30,11 @@ function initMap() {
     document.querySelector('#map'),
     {
       zoom: 15,
-      center: centerCoords,
+      center: originCoords,
     }
   )
 }
+
 
 function setMarkers(markerInfo) {
 
@@ -40,4 +44,38 @@ function setMarkers(markerInfo) {
     position: { lng, lat },
     title: markerInfo.name
   })
+}
+
+
+function getRouteDetails(destination) {
+
+  if (destination.length === 1) {
+
+    const [firstRestroom] = destination
+    const [lng, lat] = firstRestroom.data.location.coordinates
+
+    const routeDetails = {
+      origin: originCoords,
+      destination: { lng, lat },
+      travelMode: 'WALKING'
+    }
+
+    const service = new google.maps.DirectionsService()
+
+    service.route(
+      routeDetails,
+      routeResult => {
+        renderRoute(routeResult)
+      }
+    )
+  }
+}
+
+
+function renderRoute(routeDetails) {
+
+  const renderer = new google.maps.DirectionsRenderer()
+
+  renderer.setDirections(routeDetails)
+  renderer.setMap(myMap)
 }
