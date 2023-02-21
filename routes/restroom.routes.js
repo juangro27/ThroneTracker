@@ -13,6 +13,7 @@ router.get("/", (req, res, next) => {
         .then(restrooms => checkRestrooms(restrooms))
         .then(restrooms => res.render("restrooms/restrooms-list", { restrooms }))
         .catch(err => next(err))
+
 })
 
 router.get("/location-list", (req, res, next) => {
@@ -27,7 +28,8 @@ router.post("/location-list", (req, res, next) => {
 
         RestroomsApi
             .getRestroomsByLocation(lat, lng)
-            .then((data) => checkRestrooms(data))
+            .then(({ data }) => parseRestrooms(data))
+            .then(restrooms => checkRestrooms(restrooms))
             .then(restrooms => res.render('restrooms/restrooms-list', { restrooms }))
             .catch(err => next(err))
 

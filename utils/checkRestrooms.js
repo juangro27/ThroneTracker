@@ -1,6 +1,7 @@
 const Restroom = require("../models/Restroom.model")
 
 const checkRestrooms = restrooms => {
+
     const RestroomsFindPromises = restrooms.map(({ reference }) => Restroom.findOne({ reference }))
 
     return Promise
