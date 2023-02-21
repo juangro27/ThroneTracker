@@ -39,14 +39,6 @@ router.post("/location-list", (req, res, next) => {
 })
 
 
-router.get("/map", (req, res, next) => {
-    res.render('req.query')
-})
-
-router.post("/map", (req, res, next) => {
-    res.send(req.body)
-})
-
 router.get("/:id", (req, res, next) => {
 
     const { id } = req.params

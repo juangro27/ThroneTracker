@@ -10,7 +10,7 @@
 | POST   | /login                             | signin form handler                         |      |
 | POST   | /logout                            | logout user handler                         |      |
 | GET    | /restrooms                         | list of restrooms render                    |      |
-| GET    | /restrooms/map                     | map of restrooms near render                |      |
+| POST   | /restrooms                         | list of restrooms handler                   |      |
 | GET    | /restrooms/:id                     | restroom details render                     |      |
 | POST   | /restrooms/:id/comments            | list comments render                        |      |
 | POST   | /restrooms/:id/comments/create     | create comment handler                      |      |
