@@ -4,9 +4,6 @@ body {
 }
 
 #map {
-<<<<<<< HEAD
-    height: 500px;
-=======
     height: 400px;
 }
 
@@ -39,5 +36,4 @@ body {
     padding: 20px;
     background-color: rgba(46, 46, 46, 0.8);
     color: white;
->>>>>>> 90988983670710bea80667cb9d12cbe09ee01fb8
 }

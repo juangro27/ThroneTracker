@@ -83,15 +83,14 @@ router.post("/:id/comments/create", (req, res, next) => {
 })
 
 router.get("/:id/comments/:commentID/edit", (req, res, next) => {
-    const { commentID } = req.params
-
+    const { commentID, id } = req.params
     Comment
         .findById(commentID)
         .populate({
             path: 'owner',
             select: '-password -email -role -createdAt -updatedAt'
         })
-        .then(comment => res.render('restrooms/comment-edit', comment))
+        .then(comment => res.render('restrooms/comment-edit', { comment, restroom: id }))
         .catch(err => next(err))
 
 })
@@ -101,6 +100,7 @@ router.post("/:id/comments/:commentID/edit", (req, res, next) => {
     const { comment } = req.body
     Comment
         .findByIdAndUpdate(commentID, { comment })
+        .then(cne => console.log(cne))
         .then(() => res.redirect(`/restrooms/${id}`))
         .catch(err => next(err))
 
