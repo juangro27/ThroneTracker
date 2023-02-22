@@ -1,10 +1,10 @@
 <div class="container">
-    <img style="width: 80px; height: 80px" src="{{owner.avatar}}" alt="{{owner.firstName}}, {{owner.lastName}}">
-
-    <h2>{{owner.firstName}} {{owner.lastName}} comment</h2>
-    <form action="/restrooms/{{restroom}}/comments/{{owner.id}}/edit" method="post">
-        <textarea name="comment" id="comment" cols="150" rows="10">{{comment}}</textarea>
-        <p>Last modification: {{updatedAt}}</p>
+    <img style="width: 80px; height: 80px" src="{{comment.owner.avatar}}"
+        alt="{{comment.owner.firstName}}, {{comment.owner.lastName}}">
+    <h2>{{comment.owner.firstName}} {{comment.owner.lastName}} comment</h2>
+    <form action="/restrooms/{{restroom}}/comments/{{comment.id}}/edit" method="post">
+        <textarea name="comment" id="comment" cols="150" rows="10">{{comment.comment}}</textarea>
+        <p>Last modification: {{comment.updatedAt}}</p>
         <input type="submit" value="Update"> <a href="/restrooms/{{restroom}}/">Back</a>
     </form>
 </div>

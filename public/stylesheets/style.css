@@ -1,12 +1,9 @@
 body {
     font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 #map {
-<<<<<<< HEAD
-    height: 500px;
-=======
     height: 400px;
 }
 
@@ -39,5 +36,16 @@ body {
     padding: 20px;
     background-color: rgba(46, 46, 46, 0.8);
     color: white;
->>>>>>> 90988983670710bea80667cb9d12cbe09ee01fb8
+<<<<<<< HEAD
+=======
+}
+
+.comment-info img {
+    width: 80px;
+    height: 80px;
+}
+
+.comment-details p {
+    word-break: break-all;
+>>>>>>> 763858c61feade8256be313d92cdb50fdbf7cb05
 }

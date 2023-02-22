@@ -70,13 +70,14 @@
             <h4>Comments</h4>
 
             {{#each restroom.comments}}
-            <div class="d-flex">
-                <img style="width: 80px; height: 80px" src="{{owner.avatar}}"
-                    alt="{{owner.firstName}}, {{owner.lastName}}">
+            <div class="d-flex comment-info">
+                <img src="{{owner.avatar}}" alt="{{owner.firstName}}, {{owner.lastName}}">
                 <p>{{owner.firstName}} {{owner.lastName}}</p>
+            </div>
+            <div class="comment-details">
+                <p>{{comment}}</p>
 
             </div>
-            <p>{{comment}}</p>
             <p>{{createdAt}}</p>
             <a href="/restrooms/{{../restroom.id}}/comments/{{id}}/edit">Edit</a>
             <a href="/restrooms/{{../restroom.id}}/comments/{{id}}/delete">Delete</a>
@@ -85,10 +86,12 @@
 
 
             <form action="/restrooms/{{restroom.id}}/comments/create" method="post">
-                <label for="comment">Comment:</label>
-                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                <label for="comment"></label>
+                <textarea class="form-control" style="height: 100px" name="comment" id="comment"
+                    placeholder="My comment..."></textarea>
                 <input type="submit" value="Send">
             </form>
+
 
         </div>
     </div>
