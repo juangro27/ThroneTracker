@@ -35,6 +35,7 @@ router.post('/signup', isLoggedOut, fileUploader.single('avatar'), checkFields('
 router.get('/login', isLoggedOut, (req, res, next) => res.render('auth/login'))
 
 router.post('/login', isLoggedOut, checkFields("login"), (req, res, next) => {
+
     const { userPwd, email } = req.body
 
     User
@@ -56,7 +57,6 @@ router.post('/login', isLoggedOut, checkFields("login"), (req, res, next) => {
 
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
-
 
     req.session.destroy(() => res.redirect('/'))
 })
