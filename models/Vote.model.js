@@ -13,11 +13,6 @@ const voteSchema = new Schema(
       type: Schema.Types.ObjectId,
       required: true,
     },
-    restroom: {
-      ref: 'restroom',
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
   },
   {
     timestamps: true

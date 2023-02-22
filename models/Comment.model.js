@@ -7,11 +7,6 @@ const commentSchema = new Schema(
       required: true,
       trim: true
     },
-    restroom: {
-      ref: 'restroom',
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
     owner: {
       ref: 'user',
       type: Schema.Types.ObjectId

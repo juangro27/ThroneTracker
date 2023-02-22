@@ -61,7 +61,7 @@ router.post("/:id/comments/create", (req, res, next) => {
     const { _id: owner } = req.session.currentUser
 
     Comment
-        .create({ comment, restroom, owner })
+        .create({ comment, owner })
         .then(comment => Restroom
             .findByIdAndUpdate(restroom, { $push: { comments: comment } }))
         .then(() => res.redirect(`/restrooms/${restroom}`))
