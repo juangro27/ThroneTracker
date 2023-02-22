@@ -7,6 +7,7 @@ const { checkRestrooms } = require('../utils/checkRestrooms')
 const { parseRestrooms } = require('../utils/parseRestrooms')
 const mongoose = require("mongoose");
 const { populate } = require("../models/Restroom.model")
+const { getScore } = require("../utils/getScore")
 
 
 router.get("/", (req, res, next) => {
@@ -40,18 +41,23 @@ router.post("/search", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
 
     const { id } = req.params
+    const promises = [
+        Restroom
+            .findById(id)
+            .populate({
+                path: "comments",
+                select: '-restroom -updatedAt',
+                populate: {
+                    path: 'owner',
+                    select: '-password -email -role -createdAt -updatedAt'
+                }
+            }),
+        getScore(id)
 
-    Restroom
-        .findById(id)
-        .populate({
-            path: "comments",
-            select: '-restroom -updatedAt',
-            populate: {
-                path: 'owner',
-                select: '-password -email -role -createdAt -updatedAt'
-            }
-        })
-        .then(restroom => res.render('restrooms/restroom-details', restroom))
+    ]
+    Promise
+        .all(promises)
+        .then(([restroom, score]) => res.render('restrooms/restroom-details', { restroom, score }))
         .catch(err => next(err))
 })
 
@@ -115,32 +121,27 @@ router.post("/:id/votes/create", (req, res, next) => {
     const { vote } = req.body
     const { id } = req.params
     const { _id: ownerID } = req.session.currentUser
+
     Restroom
         .findById(id)
         .populate("votes")
         .select({ votes: 1 })
         .then(({ votes }) => {
-            const voteOwners = votes.map(({ _id, owner }) => ({ _id, owner }))
-            const voteFiltered = voteOwners.filter(({ owner }) => owner == ownerID)
-            if (voteFiltered.length) {
-                console.log("voteFiltered --->", voteFiltered)
-                const [{ _id }] = voteFiltered
-                return Vote.findByIdAndUpdate(_id, { vote })
+            const haveVoted = votes.filter(({ owner }) => owner == ownerID)
+            if (haveVoted.length) {
+                return Vote.findByIdAndUpdate(haveVoted[0]._id, { vote });
+            } else {
+                return Vote.create({ vote, owner: ownerID });
             }
         })
-        .then(result => {
-            console.log("2then result --->", result)
-
-            return !result && Vote.create({ vote, owner: ownerID })
+        .then((newVote) => {
+            return Restroom.findByIdAndUpdate(
+                id,
+                { $addToSet: { votes: newVote._id } },
+                { unique: true }
+            );
         })
-        .then(votes => {
-            console.log("votes result ---->", votes)
-            return votes && Restroom.findByIdAndUpdate(id, { $push: { votes: votes._id } })
-        })
-        .then((banito) => {
-            console.log("EL BAÑITO ====>", banito)
-            return res.redirect(`/restrooms/${id}`)
-        })
+        .then(() => res.redirect(`/restrooms/${id}`))
         .catch(err => next(err))
 
 })

@@ -1,50 +1,50 @@
 <div class="container">
     <div id="map"></div>
 
-    <h1>name: {{name}}</h1>
+    <h1>name: {{restroom.name}}</h1>
     <hr>
 
-    <p>reference: {{reference}}</p>
-    <p>description: {{description}}</p>
-    <p>street: {{address.street}}</p>
-    <p>city: {{address.city}}</p>
-    <p>state: {{address.state}}</p>
-    <p>country: {{address.country}}</p>
-    <p>indications: {{address.indications}}</p>
-    <p>changing_table: {{features.changing_table}}</p>
-    <p>accessible: {{features.accessible}}</p>
-    <p>unisex: {{features.unisex}}</p>
-    <p>votesDown: {{votes.down}}</p>
-    <p>votesUp: {{votes.up}}</p>
-    <p>votes: {{votes.votes}}</p>
+    <p>reference: {{restroom.reference}}</p>
+    <p>description: {{restroom.description}}</p>
+    <p>street: {{restroom.address.street}}</p>
+    <p>city: {{restroom.address.city}}</p>
+    <p>state: {{restroom.address.state}}</p>
+    <p>country: {{restroom.address.country}}</p>
+    <p>indications: {{restroom.address.indications}}</p>
+    <p>changing_table: {{restroom.features.changing_table}}</p>
+    <p>accessible: {{restroom.features.accessible}}</p>
+    <p>unisex: {{restroom.features.unisex}}</p>
+    <p>score: {{score}}</p>
 
-    <p class="restroom" data-id="{{id}}">ID: {{id}}</p>
+
+    <p class="restroom" data-id="{{restroom.id}}">ID: {{restroom.id}}</p>
 
     <hr>
 
-    {{#each comments}}
-    <p>{{comment}}</p>
-    <p>{{owner.firstName}} {{owner.lastName}}</p>
-    <img style="width: 80px; height: 80px" src="{{owner.avatar}}" alt="{{owner.firstName}}, {{owner.lastName}}">
+    {{#each restroom.comments}}
+    <p>{{restroom.comment}}</p>
+    <p>{{restroom.owner.firstName}} {{restroom.owner.lastName}}</p>
+    <img style="width: 80px; height: 80px" src="{{restroom.owner.avatar}}"
+        alt="{{restroom.owner.firstName}}, {{restroom.owner.lastName}}">
     <p>{{createdAt}}</p>
-    <a href="/restrooms/{{../id}}/comments/{{id}}/edit">Edit</a>
-    <a href="/restrooms/{{../id}}/comments/{{id}}/delete">Delete</a>
+    <a href="/restrooms/{{../id}}/comments/{{restroom.id}}/edit">Edit</a>
+    <a href="/restrooms/{{../id}}/comments/{{restroom.id}}/delete">Delete</a>
     <br>
     {{/each}}
 
 
-    <form action="/restrooms/{{id}}/votes/create" method="post">
+    <form action="/restrooms/{{restroom.id}}/votes/create" method="post">
         <input hidden type="text" name="vote" value="up">
         <input type="submit" value="Vote up">
     </form>
-    <form action="/restrooms/{{id}}/votes/create" method="post">
+    <form action="/restrooms/{{restroom.id}}/votes/create" method="post">
         <input hidden type="text" name="vote" value="down">
         <input type="submit" value="Vote down">
     </form>
 
     <hr>
 
-    <form action="/restrooms/{{id}}/comments/create" method="post">
+    <form action="/restrooms/{{restroom.id}}/comments/create" method="post">
         <label for="comment">Comment:</label>
         <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
         <input type="submit" value="Send">
