@@ -15,7 +15,7 @@ const getScore = restroomID => {
                 return acc
             }, 0)
             console.log(votesCount)
-            return votesCount ? (votesCount / votes.length) * 100 : 0
+            return (votesCount ? (votesCount / votes.length) * 100 : 0)
         })
         .catch(err => next(err))
 }

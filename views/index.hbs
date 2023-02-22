@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="index-hero">
     <video autoplay muted loop>
         <source src="/videos/index-hero.mp4" type="video/mp4">
@@ -8,3 +9,248 @@
             sed laudantium culpa deleniti. </h1>
     </div>
 </div>
+=======
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{appTitle}}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/index.css" />
+</head>
+
+<body>
+
+    <main>
+
+        <section class="index-hero">
+            <header>
+                <div class="logo">
+                    <a href="/">NeedRestroom</a>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/restrooms/search">Search</a>
+                        </li>
+
+                        <li>
+                            <a href="/about-us">About us</a>
+                        </li>
+                        <li>
+                            <a href="/contact">Contact</a>
+                        </li>
+                        {{#unless currentUser}}
+
+                        <li>
+                            <a href="/signup">Sign up</a>
+                        </li>
+                        <li>
+                            <a href="/login">Login</a>
+                        </li>
+                        {{/unless}}
+                        {{#if currentUser}}
+
+                        <li>
+                            <a href="/users/my-profile">My profile</a>
+                        </li>
+                        <li>
+                            <a href="/logout">Logout</a>
+                        </li>
+                        {{/if}}
+                    </ul>
+                </nav>
+            </header>
+            <video autoplay muted loop>
+                <source src="/videos/index-hero.mp4" type="video/mp4">
+            </video>
+            <div class="container d-flex justify-content-center align-items-center index-title">
+                <div class="row">
+                    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus aspernatur debitis
+                            sequi,
+                            possimus
+                            sed laudantium culpa deleniti. </h1>
+                        <a href="/restrooms/search">Search restrooms</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+        <section class="index-how-work d-flex justify-content-center align-items-center">
+            <div class="row  d-flex justify-content-center align-items-center ">
+
+                <div class="col-10   ">
+                    <div class="row ">
+                        <div class="col-12 index-how-work-title">
+                            <h2 class="text-center">How we work</h2>
+                        </div>
+                        <div class="col-4">
+                            <div class=" step-one">
+                                <h2>Sign Up</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quas possimus
+                                    magni
+                                    corrupti
+                                    repudiandae praesentium.</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="step-two">
+                                <h2>Search</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quas possimus
+                                    magni
+                                    corrupti
+                                    repudiandae
+                                    praesentium.</p>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="step-three">
+                                <h2>Go</h2>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quas possimus
+                                    magni
+                                    corrupti
+                                    repudiandae
+                                    praesentium.</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+        </section>
+        <section class="index-reviews">
+            <div class="row h-100 justify-content-center align-items-center">
+
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12 index-reviews-title">
+                            <h2 class="text-center">Reviews about our service</h2>
+                        </div>
+                        <div class="col-4">
+                            <div
+                                class="align-self-start d-flex flex-column align-items-center justify-content-center review-one">
+                                <figure class="review-figure">
+                                    <img src="/images/c1.webp" alt="" srcset="">
+                                </figure>
+                                <h3>Cristina cotilla</h3>
+                                <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. </q>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div
+                                class="align-self-end d-flex flex-column align-items-center justify-content-center eview-two">
+                                <figure class="review-figure">
+                                    <img src="/images/c2.webp" alt="" srcset="">
+                                </figure>
+                                <h3>Cristina golosa</h3>
+                                <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. </q>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div
+                                class="align-self-start d-flex flex-column align-items-center justify-content-center review-three">
+                                <figure class="review-figure">
+                                    <img src="/images/c3.webp" alt="" srcset="">
+                                </figure>
+
+                                <h3>Cristina sorprise</h3>
+                                <q>Lorem ipsum dolor sit amet consectetur adipisicing elit.</q>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </main>
+    <footer>
+        <section class="footer-top">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="our-links row w-100">
+                            <div class="col-6 col-md-3">
+                                <h4>Company</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <h4>Company</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <h4>Company</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <h4>Company</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                    <li>About Us</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-bottom">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-md-6 d-flex align-items-center justify-content-evenly footer-links ">
+                        <a href="#">About Us</a>
+                        <a href="#">Privacy & Terms</a>
+                        <a href="#">Contact Us</a>
+                    </div>
+                    <div class="col-md-6  d-flex align-items-center justify-content-center">
+                        <p class="footer-copyright">© 2023 NeedRestroom, Inc.</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </footer>
+
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
+>>>>>>> juan
