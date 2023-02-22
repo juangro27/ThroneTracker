@@ -46,19 +46,10 @@ const restroomSchema = new Schema(
       },
       coordinates: [Number]
     },
-    votes: {
-      type: Object,
-      down: {
-        type: Number,
-      },
-      up: {
-        type: Number,
-      },
-      votes: [{
-        ref: 'vote',
-        type: Schema.Types.ObjectId
-      }]
-    },
+    votes: [{
+      ref: 'vote',
+      type: Schema.Types.ObjectId
+    }],
     comments: [{
       ref: 'comment',
       type: Schema.Types.ObjectId

@@ -16,8 +16,6 @@ const parseRestrooms = restroomsArray => {
             unisex,
             latitude,
             longitude,
-            downvote: down,
-            upvote: up
         } = restroom
 
 
@@ -42,11 +40,7 @@ const parseRestrooms = restroomsArray => {
                 type: 'Point',
                 coordinates: [longitude, latitude]
             },
-            votes: {
-                down,
-                up,
-                votes: []
-            },
+            votes: [],
             comments: []
         }
 
