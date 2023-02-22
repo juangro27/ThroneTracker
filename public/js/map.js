@@ -1,6 +1,8 @@
 const trElements = [...document.querySelectorAll(".restroom")]
 const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 const originCoords = JSON.parse(localStorage.getItem('location'))
+
+const markerImg = "marker"
 let myMap
 const restroomCoordsPromises = restroomsIDs.map(restroom =>
   axios.get(`/api/restrooms/${restroom}`)
