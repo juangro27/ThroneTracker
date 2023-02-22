@@ -11,7 +11,7 @@ const { getScore } = require("../utils/getScore")
 
 
 router.get("/", (req, res, next) => {
-    res.render("index", { errorMessage: `The address is required` })
+    res.render("index", { errorMessage: `The address is required` },)
 })
 
 router.get("/search", (req, res, next) => {

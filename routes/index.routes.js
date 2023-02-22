@@ -3,7 +3,7 @@ const router = express.Router()
 const transporter = require('../config/transporter.config')
 
 router.get("/", (req, res, next) => {
-  res.render("index")
+  res.render("index", { layout: false })
 })
 
 router.get("/contact", (req, res, next) => {
