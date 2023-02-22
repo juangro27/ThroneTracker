@@ -11,7 +11,12 @@ router.get("/", (req, res, next) => {
     res.render("index", { errorMessage: `The address is required` })
 })
 
-router.post("/", (req, res, next) => {
+router.get("/search", (req, res, next) => {
+    res.render("restrooms/restroom-search")
+})
+
+
+router.post("/search", (req, res, next) => {
 
     if (req.body) {
 
