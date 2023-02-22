@@ -1,0 +1,33 @@
+<div class="container">
+
+    <h1>{{appTitle}} 🚽</h1>
+    <hr>
+
+    <div class="row justify-content-center pt-3">
+        {{#if errorMessage}}
+        <div id="errorMessage">
+            <p>{{errorMessage}}</p>
+        </div>
+        {{/if}}
+        <form action="/restrooms/search" method="POST">
+
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="search" class="form-label">Search</label>
+                    <input type="text" class="form-control" id="search" name="search">
+                    <input hidden type="text" class="form-control" id="lat" name="lat">
+                    <input hidden type="text" class="form-control" id="lng" name="lng">
+                    <input hidden type="text" class="form-control" id="location" name="location">
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-dark block">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script src="/js/autoComplete.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&libraries=places&callback=initMap"></script>
