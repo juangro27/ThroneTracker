@@ -1,9 +1,10 @@
 body {
     font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
 }
 
 #map {
-    height: 500px;
+    height: 400px;
 }
 
 .index-hero {
