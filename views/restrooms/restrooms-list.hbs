@@ -1,24 +1,19 @@
-<div class="container">
+<div id="map"></div>
+
+<div class="container mt-4 mb-5">
 
     <div class="row justify-content-center">
 
-        <div class="col-md-8">
+        <div class="col">
 
-            <h1>Restrooms list</h1>
-            <hr>
-
-            <div id="map"></div>
-
-            <table class="table">
+            <table class="table ">
                 <thead>
                     <tr>
                         <th hidden scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Address</th>
-                        <th scope="col">Changing table</th>
-                        <th scope="col">Accessible</th>
-                        <th scope="col">Unisex</th>
-                        <th scope="col">Details</th>
+                        <th scope="col">Features</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +23,32 @@
                     <tr>
                         <td hidden class="restroom" data-id="{{id}}"></td>
                         <td>{{name}}</td>
-                        <td>{{address.street }},{{address.city}}, {{address.state}}</td>
-                        <td>{{features.changing_table}}</td>
-                        <td>{{features.accessible}}</td>
-                        <td>{{features.unisex}}</td>
-                        <td> <a href=" /restrooms/{{_id}}">Details</a>
+
+                        <td>{{address.street}}, {{address.city}}, {{address.state}}, {{address.country}}</td>
+
+                        <td>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{#if features.unisex}}
+                                    <img src="/images/unisex.png" alt="unisex" width="25">
+                                    {{/if}}
+                                </div>
+
+                                <div class="col-3">
+                                    {{#if features.accessible}}
+                                    <img src="/images/accessible.png" alt="accessible" width="25">
+                                    {{/if}}
+                                </div>
+
+                                <div class="col-3">
+                                    {{#if features.changing_table}}
+                                    <img src="/images/changing-table.png" alt="changing_table" width="25">
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </td>
+
+                        <td> <a href="/restrooms/{{_id}}" class="btn btn-outline-secondary btn-sm">Details</a>
                         </td>
                     </tr>
 
@@ -43,13 +59,14 @@
         </div>
     </div>
 
-    <hr>
-
-    <a href="/" class="btn btn-dark">Volver a inicio</a>
+    <div class="container d-flex justify-content-center mt-4">
+        <a href="/" class="btn btn-secondary btn-lg">Volver a inicio</a>
+    </div>
 
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/mapStyles.js"></script>
 <script src="/js/map.js"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&callback=initMap"></script>

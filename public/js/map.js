@@ -2,11 +2,13 @@ const trElements = [...document.querySelectorAll(".restroom")]
 const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 const originCoords = JSON.parse(localStorage.getItem('location'))
 
-const markerImg = "marker"
 let myMap
+
 const restroomCoordsPromises = restroomsIDs.map(restroom =>
   axios.get(`/api/restrooms/${restroom}`)
 )
+
+
 Promise.all(restroomCoordsPromises)
   .then((data) => {
     data.forEach(({ data }) => {
@@ -18,15 +20,20 @@ Promise.all(restroomCoordsPromises)
   })
   .then(data => getRouteDetails(data))
   .catch(err => console.error(err))
+
+
 function initMap() {
   myMap = new google.maps.Map(
     document.querySelector('#map'),
     {
       zoom: 15,
       center: originCoords,
+      styles: mapStyles.silver
     }
   )
 }
+
+
 function setMarkers(markerInfo) {
   const [lng, lat] = markerInfo.coordinates
   new google.maps.Marker({
@@ -35,6 +42,8 @@ function setMarkers(markerInfo) {
     title: markerInfo.name
   })
 }
+
+
 function getRouteDetails(destination) {
   if (destination.length === 1) {
     const [firstRestroom] = destination
@@ -53,6 +62,8 @@ function getRouteDetails(destination) {
     )
   }
 }
+
+
 function renderRoute(routeDetails) {
   const renderer = new google.maps.DirectionsRenderer()
   renderer.setDirections(routeDetails)

@@ -1,58 +1,107 @@
-<div class="container">
-    <div id="map"></div>
+<div id="map"></div>
 
-    <h1>name: {{restroom.name}}</h1>
-    <hr>
+<div class="container mt-4 mb-5">
 
-    <p>reference: {{restroom.reference}}</p>
-    <p>description: {{restroom.description}}</p>
-    <p>street: {{restroom.address.street}}</p>
-    <p>city: {{restroom.address.city}}</p>
-    <p>state: {{restroom.address.state}}</p>
-    <p>country: {{restroom.address.country}}</p>
-    <p>indications: {{restroom.address.indications}}</p>
-    <p>changing_table: {{restroom.features.changing_table}}</p>
-    <p>accessible: {{restroom.features.accessible}}</p>
-    <p>unisex: {{restroom.features.unisex}}</p>
-    <p>score: {{score}}</p>
+    <div class="row justify-content-center">
+
+        <div class="col">
+
+            <h2 class="text-center">{{restroom.name}}</h2>
+            <br>
+
+            <div class="row">
+                <div class="col-6 align-items-center">
+                    <h5 class="m-0">{{restroom.address.street}}, {{restroom.address.city}}, {{restroom.address.state}},
+                        {{restroom.address.country}}</h5>
+                    <p class="m-0">{{restroom.description}}</p>
+                    <p hidden class="restroom" data-id="{{restroom.id}}"></p>
+                </div>
+
+                <div class="col-2 d-flex align-items-center">
+                    <div class="row">
+                        <div class="col-3">
+                            {{#if restroom.features.unisex}}
+                            <img src="/images/unisex.png" alt="unisex" width="25">
+                            {{/if}}
+                        </div>
+
+                        <div class="col-3">
+                            {{#if restroom.features.accessible}}
+                            <img src="/images/accessible.png" alt="accessible" width="25">
+                            {{/if}}
+                        </div>
+
+                        <div class="col-3">
+                            {{#if restroom.features.changing_table}}
+                            <img src="/images/changing-table.png" alt="changing_table" width="25">
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3 d-flex align-items-center">
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <form action="/restrooms/{{restroom.id}}/votes/create" method="post"
+                                class="d-grid gap-2 mx-auto">
+                                <input hidden type="text" name="vote" value="up">
+                                <input class="btn btn-outline-success" type="submit" value="Vote up">
+                            </form>
+                        </div>
+
+                        <div class="col-6">
+                            <form action="/restrooms/{{restroom.id}}/votes/create" method="post"
+                                class="d-grid gap-2 mx-auto">
+                                <input hidden type="text" name="vote" value="down">
+                                <input class="btn btn-outline-danger" type="submit" value="Vote down">
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-1 d-flex align-items-center">
+                    <p class="m-0">{{score}} %</p>
+                </div>
+            </div>
+
+            <hr>
+
+            <h4>Comments</h4>
+
+            {{#each restroom.comments}}
+            <div class="d-flex">
+                <img style="width: 80px; height: 80px" src="{{owner.avatar}}"
+                    alt="{{owner.firstName}}, {{owner.lastName}}">
+                <p>{{owner.firstName}} {{owner.lastName}}</p>
+
+            </div>
+            <p>{{comment}}</p>
+            <p>{{createdAt}}</p>
+            <a href="/restrooms/{{../restroom.id}}/comments/{{id}}/edit">Edit</a>
+            <a href="/restrooms/{{../restroom.id}}/comments/{{id}}/delete">Delete</a>
+            <br>
+            {{/each}}
 
 
-    <p class="restroom" data-id="{{restroom.id}}">ID: {{restroom.id}}</p>
+            <form action="/restrooms/{{restroom.id}}/comments/create" method="post">
+                <label for="comment">Comment:</label>
+                <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                <input type="submit" value="Send">
+            </form>
 
-    <hr>
+        </div>
+    </div>
 
-    {{#each restroom.comments}}
-    <p>{{restroom.comment}}</p>
-    <p>{{restroom.owner.firstName}} {{restroom.owner.lastName}}</p>
-    <img style="width: 80px; height: 80px" src="{{restroom.owner.avatar}}"
-        alt="{{restroom.owner.firstName}}, {{restroom.owner.lastName}}">
-    <p>{{createdAt}}</p>
-    <a href="/restrooms/{{../id}}/comments/{{restroom.id}}/edit">Edit</a>
-    <a href="/restrooms/{{../id}}/comments/{{restroom.id}}/delete">Delete</a>
-    <br>
-    {{/each}}
-
-
-    <form action="/restrooms/{{restroom.id}}/votes/create" method="post">
-        <input hidden type="text" name="vote" value="up">
-        <input type="submit" value="Vote up">
-    </form>
-    <form action="/restrooms/{{restroom.id}}/votes/create" method="post">
-        <input hidden type="text" name="vote" value="down">
-        <input type="submit" value="Vote down">
-    </form>
-
-    <hr>
-
-    <form action="/restrooms/{{restroom.id}}/comments/create" method="post">
-        <label for="comment">Comment:</label>
-        <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
-        <input type="submit" value="Send">
-    </form>
+    <div class="container d-flex justify-content-center mt-4">
+        <a href="/" class="btn btn-secondary btn-lg">Volver a inicio</a>
+    </div>
 
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/mapStyles.js"></script>
 <script src="/js/map.js"></script>
 <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&callback=initMap"></script>
