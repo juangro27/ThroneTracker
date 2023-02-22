@@ -34,53 +34,49 @@
                <li class="nav-item">
                   <a class="nav-link" href="/about-us">About us</a>
                </li>
-<<<<<<< HEAD
-            </ul>
+               <<<<<<< HEAD </ul>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               {{#if currentUser}}
-=======
->>>>>>> juan
-               <li class="nav-item">
-                  <a class="nav-link" href="/restrooms/search">
-                     <img src="/images/search.png" alt="Logo" width="18" class="d-inline-block align-text-top">
-                     Search</a>
-               </li>
-               {{/if}}
-            </ul>
-
-            <ul class="navbar-nav mb-2 mb-lg-0">
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                     aria-expanded="false">
-                     Profile
-                  </a>
-
-                  <ul class="dropdown-menu">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      {{#if currentUser}}
-                     <li><a class="dropdown-item" href="/users/my-profile">My profile</a></li>
-                     <li>
-                        <hr class="dropdown-divider">
+                     =======
+                     >>>>>>> juan
+                     <li class="nav-item">
+                        <a class="nav-link" href="/restrooms/search">
+                           <img src="/images/search.png" alt="Logo" width="18" class="d-inline-block align-text-top">
+                           Search</a>
                      </li>
                      {{/if}}
-
-                     {{#unless currentUser}}
-                     <li><a class="dropdown-item" href="/login">Login</a></li>
-                     <li><a class="dropdown-item" href="/signup">Sign up</a></li>
-                     {{/unless}}
-
-                     {{#if currentUser}}
-                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                     {{/if}}
                   </ul>
-               </li>
-<<<<<<< HEAD
-=======
+
+                  <ul class="navbar-nav mb-2 mb-lg-0">
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                           Profile
+                        </a>
+
+                        <ul class="dropdown-menu">
+                           {{#if currentUser}}
+                           <li><a class="dropdown-item" href="/users/my-profile">My profile</a></li>
+                           <li>
+                              <hr class="dropdown-divider">
+                           </li>
+                           {{/if}}
+
+                           {{#unless currentUser}}
+                           <li><a class="dropdown-item" href="/login">Login</a></li>
+                           <li><a class="dropdown-item" href="/signup">Sign up</a></li>
+                           {{/unless}}
+
+                           {{#if currentUser}}
+                           <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                           {{/if}}
+                        </ul>
+                     </li>
 
 
 
->>>>>>> juan
-            </ul>
+                  </ul>
          </div>
       </div>
    </nav>
