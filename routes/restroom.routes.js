@@ -60,6 +60,7 @@ router.get("/:id", isLoggedIn, (req, res, next) => {
         .then(([restroom, score]) => {
             const comments = restroom.comments.map(commentElm => {
                 const { _id, comment, owner, createdAt } = commentElm
+                console.log(commentElm)
                 const { _id: ownerId } = owner
                 const canEdit =
                     (ownerId == req.session.currentUser._id || req.session.currentUser.role === 'ADMIN')

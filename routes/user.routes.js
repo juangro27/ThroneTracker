@@ -70,7 +70,7 @@ router.get("/:id/delete", isLoggedIn, isAuthorized("ADMIN"), (req, res, next) =>
 
     User
         .findByIdAndDelete(id)
-        .then(() => res.redirect('/'))
+        .then(() => res.redirect('/users'))
         .catch(err => next(err))
 })
 
