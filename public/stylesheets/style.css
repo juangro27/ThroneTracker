@@ -167,3 +167,15 @@ footer section {
 .icon-container {
     width: 50px;
 }
+
+.avatar img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.avatar-edit img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
