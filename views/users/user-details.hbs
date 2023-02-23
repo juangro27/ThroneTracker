@@ -22,9 +22,11 @@
                     <a href="/users/{{id}}/edit" class="btn btn-outline-secondary btn-lg">Edit</a>
                 </div>
 
+                {{#if isAdmin}}
                 <div class="col-12 col-md-3 d-grid">
                     <a href="/users/{{id}}/delete" class="btn btn-outline-danger btn-lg">Delete</a>
                 </div>
+                {{/if}}
             </div>
         </div>
 

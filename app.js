@@ -10,7 +10,7 @@ const app = express();
 
 require("./config")(app);
 
-app.locals.appTitle = `Los putos restrooms (toiletes)`;
+app.locals.appTitle = `ThroneTracker`;
 
 require('./config/session.config')(app)
 

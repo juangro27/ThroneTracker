@@ -36,9 +36,16 @@ img {
     font-weight: 500;
 }
 
+.users-list img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
 
 .comment-info img {
     width: 40px;
+    height: 40px;
+    object-fit: cover;
 }
 
 .comment-details p {
@@ -46,7 +53,9 @@ img {
 }
 
 
-
+.error-img img {
+    width: 600px;
+}
 
 /* Footer */
 
@@ -137,6 +146,8 @@ footer section {
 
 .comment-edit img {
     width: 80px;
+    height: 80px;
+    object-fit: cover;
 }
 
 /* error message */

@@ -1,0 +1,53 @@
+<div class="container mt-4 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Avatar</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each user}}
+
+                    <tr>
+                        <td>
+                            <div class="users-list">
+                                <img class="rounded-circle" src="{{avatar}}" alt="avatar">
+                            </div>
+                        </td>
+                        <td>{{firstName}} {{lastName}}</td>
+                        <td>{{email}}</td>
+                        <td>{{role}}</td>
+
+
+                        <td>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-lg-6 mb-2 mb-lg-0 d-grid">
+                                    <button type="submit" class="btn btn-outline-success btn-sm">Edit</button>
+                                </div>
+
+                                <div class="col-lg-6 d-grid">
+                                    <a href="/users/{{_id}}/delete" class="btn btn-outline-danger btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                    {{/each}}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

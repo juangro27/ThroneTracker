@@ -50,8 +50,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/contact">Contact</a>
                                 </li>
-                                {{#unless currentUser}}
 
+                                {{#if isAdmin}}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/users">Users list</a>
+                                </li>
+                                {{/if}}
+
+                                {{#unless currentUser}}
                                 <li class="nav-item">
                                     <a class="nav-link" href="/signup">Sign up</a>
                                 </li>
@@ -59,8 +65,8 @@
                                     <a class="nav-link" href="/login">Login</a>
                                 </li>
                                 {{/unless}}
-                                {{#if currentUser}}
 
+                                {{#if currentUser}}
                                 <li class="nav-item">
                                     <a class="nav-link" href="/users/my-profile">My profile</a>
                                 </li>
@@ -68,6 +74,8 @@
                                     <a class="nav-link" href="/logout">Logout</a>
                                 </li>
                                 {{/if}}
+
+
                             </ul>
                         </div>
                     </div>
