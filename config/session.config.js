@@ -23,6 +23,10 @@ module.exports = app => {
     );
     app.use((req, res, next) => {
         res.locals.currentUser = req.session.currentUser
+
+        if (req.session.currentUser) {
+            req.session.currentUser.role === 'ADMIN' ? res.locals.isAdmin = true : res.locals.isUser = true
+        }
         next()
     })
 };

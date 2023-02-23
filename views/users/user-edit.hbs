@@ -32,6 +32,7 @@
                     <input type="file" class="form-control" id="avatar" name="avatar" value="{{user.avatar}}">
                 </div>
 
+                {{#if isAdmin}}
                 <div class="mt-3">
                     <label for="role" class="form-label">Role</label>
                     <select class="form-select" id="role" name="role">
@@ -40,6 +41,7 @@
                         <option value="ADMIN">ADMIN</option>
                     </select>
                 </div>
+                {{/if}}
 
                 <input type="hidden" name="_id" value="{{user._id}}">
 

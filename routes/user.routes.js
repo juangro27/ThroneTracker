@@ -7,12 +7,12 @@ const fileUploader = require('../config/cloudinary.config')
 const saltRounds = 10
 
 
-router.get("/", (req, res, next) => {
-    //proyectar lo utilizado
+router.get("/", isLoggedIn, isAuthorized("ADMIN"), (req, res, next) => {
+
     User
         .find()
         .sort({ firstName: 1 })
-        .then(user => res.render('users/list', { user }))
+        .then(user => res.render('users/users-list', { user }))
         .catch(err => next(err))
 })
 
@@ -40,13 +40,13 @@ router.get("/:id", isLoggedIn, canEdit, isAuthorized("ADMIN"), (req, res, next) 
 
 
 router.get("/:id/edit", isLoggedIn, canEdit, (req, res, next) => {
+
     const { id } = req.params
+
     User
         .findById(id)
         .then(user => res.render('users/user-edit', { user }))
         .catch(err => next(err))
-
-
 
 })
 
@@ -61,26 +61,6 @@ router.post("/:id/edit", isLoggedIn, canEdit, fileUploader.single('avatar'), che
         .findByIdAndUpdate(id, { firstName, lastName, avatar, role })
         .then(() => res.redirect(`/users/my-profile`))
         .catch(err => next(err))
-
-    // User
-    //     .findById(id)
-    //     .then(user => {
-    //         if (!bcrypt.compareSync(oldPwd, user.password)) {
-    //             res.render('users/user-edit', { errorMessage: 'Incorrect password', user })
-    //             return
-    //         } else {
-    //             bcrypt
-    //                 .genSalt(saltRounds)
-    //                 .then(salt => bcrypt.hash(newPwd, salt))
-    //                 .then(password => {
-    //                     User.findByIdAndUpdate(id, { password })
-    //                         .catch(err => next(err))
-    //                 })
-    //                 .catch(err => next(err))
-    //         }
-    //     })
-    //     .catch(err => next(err))
-
 })
 
 
@@ -90,9 +70,7 @@ router.get("/:id/delete", isLoggedIn, isAuthorized("ADMIN"), (req, res, next) =>
 
     User
         .findByIdAndDelete(id)
-        .then(() => {
-            req.session.destroy(() => res.redirect('/login'))
-        })
+        .then(() => res.redirect('/'))
         .catch(err => next(err))
 })
 
