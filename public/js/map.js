@@ -32,7 +32,7 @@ function initMap() {
     {
       zoom: 15,
       center: originCoords,
-      styles: mapStyles.silver
+      styles: mapStyles.retro
     }
   )
 }

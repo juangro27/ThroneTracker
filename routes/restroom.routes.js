@@ -6,7 +6,7 @@ const RestroomsApi = require("../services/restroomsApi.service")
 const { isLoggedIn, isAuthorized } = require('../middlewares/auth-rules')
 const { checkRestrooms } = require('../utils/checkRestrooms')
 const { parseRestrooms } = require('../utils/parseRestrooms')
-const { canEditComment } = require('../middlewares/edit-rules')
+const { canModifyComment } = require('../middlewares/edit-rules')
 const { getScore } = require("../utils/getScore")
 
 
@@ -57,7 +57,18 @@ router.get("/:id", isLoggedIn, (req, res, next) => {
     ]
     Promise
         .all(promises)
-        .then(([restroom, score]) => res.render('restrooms/restroom-details', { restroom, score }))
+        .then(([restroom, score]) => {
+            const comments = restroom.comments.map(commentElm => {
+                const { _id, comment, owner, createdAt } = commentElm
+                const { _id: ownerId } = owner
+                const canEdit =
+                    (ownerId == req.session.currentUser._id || req.session.currentUser.role === 'ADMIN')
+                        ? true : false
+                return { _id, comment, createdAt, canEdit, owner: commentElm.owner }
+
+            })
+            res.render('restrooms/restroom-details', { restroom, score, comments })
+        })
         .catch(err => next(err))
 })
 
@@ -77,7 +88,7 @@ router.post("/:id/comments/create", isLoggedIn, (req, res, next) => {
 
 })
 
-router.get("/:id/comments/:commentID/edit", isLoggedIn, canEditComment, (req, res, next) => {
+router.get("/:id/comments/:commentID/edit", isLoggedIn, canModifyComment, (req, res, next) => {
     const { commentID, id } = req.params
     Comment
         .findById(commentID)
@@ -90,7 +101,7 @@ router.get("/:id/comments/:commentID/edit", isLoggedIn, canEditComment, (req, re
 
 })
 
-router.post("/:id/comments/:commentID/edit", isLoggedIn, canEditComment, (req, res, next) => {
+router.post("/:id/comments/:commentID/edit", isLoggedIn, canModifyComment, (req, res, next) => {
     const { commentID, id } = req.params
     const { comment } = req.body
     Comment
@@ -101,7 +112,7 @@ router.post("/:id/comments/:commentID/edit", isLoggedIn, canEditComment, (req, r
 
 })
 
-router.get("/:id/comments/:commentID/delete", isLoggedIn, isAuthorized('ADMIN'), (req, res, next) => {
+router.get("/:id/comments/:commentID/delete", isLoggedIn, canModifyComment, (req, res, next) => {
     const { commentID, id } = req.params
     Comment
         .findByIdAndDelete(commentID)

@@ -68,7 +68,7 @@
             <hr>
             <h4>Comments</h4>
 
-            {{#each restroom.comments}}
+            {{#each comments}}
             <div class="card mb-2">
                 <div class="card-body">
                     <div class="d-flex align-items-center comment-info">
@@ -82,20 +82,22 @@
                     </div>
 
                     <div class="row">
+                        {{#if canEdit}}
                         <div class="col-2 d-grid gap-2">
-                            <a href="/restrooms/{{../restroom.id}}/comments/{{id}}/edit"
+                            <a href="/restrooms/{{../restroom.id}}/comments/{{_id}}/edit"
                                 class="btn btn-outline-secondary btn-sm">Edit</a>
                         </div>
 
                         <div class="col-2 d-grid gap-2">
-                            <a href="/restrooms/{{../restroom.id}}/comments/{{id}}/delete"
+                            <a href="/restrooms/{{../restroom.id}}/comments/{{_id}}/delete"
                                 class="btn btn-outline-secondary btn-sm">Delete</a>
                         </div>
-
+                        {{/if}}
                         <div class="col-8 d-flex align-items-center justify-content-end">
                             <p class="m-0">{{createdAt}}</p>
                         </div>
                     </div>
+
                 </div>
             </div>
             {{/each}}

@@ -21,11 +21,16 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
 }
 
 .logo a {
     text-decoration: none;
-    font-size: 50px;
+    font-size: 20px;
     font-weight: 700;
     color: #FFFF;
 }
@@ -94,8 +99,8 @@ footer section {
 /* Search Page*/
 
 .search-container {
-    height: calc(100vh - 106px);
     min-height: 700px;
+    height: calc(100vh - 66px);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -139,6 +144,34 @@ footer section {
     width: 80px;
 }
 
+/* about us page */
+
+.aboutus-container {
+    min-height: 700px;
+    height: calc(100vh - 66px);
+}
+
+/* Contact page */
+
+.contact-container {
+    min-height: 700px;
+    height: calc(100vh - 66px);
+}
+
+/* User details page */
+
+.user-details-container {
+    min-height: 700px;
+    height: calc(100vh - 66px);
+}
+
+/* Comment edit page */
+
+.comment-edit-container {
+    min-height: 700px;
+    height: calc(100vh - 66px);
+}
+
 /* error message */
 
 #errorMessage p {
@@ -155,13 +188,15 @@ footer section {
 /* login page */
 
 .login-container {
-    min-height: 75vh;
+    min-height: 700px;
+    height: calc(100vh - 66px);
 }
 
 /* signup page */
 
 .signup-container {
     min-height: 700px;
+    height: calc(100vh - 66px);
 }
 
 /*                 */
@@ -180,4 +215,10 @@ footer section {
     width: 300px;
     height: 300px;
     object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .logo a {
+        font-size: 38px;
+    }
 }

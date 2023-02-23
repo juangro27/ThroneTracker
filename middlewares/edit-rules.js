@@ -40,7 +40,7 @@ const canEdit = (req, res, next) => {
     }
 }
 
-const canEditComment = (req, res, next) => {
+const canModifyComment = (req, res, next) => {
     const { commentID, } = req.params
     Comment
         .findById(commentID)
@@ -51,7 +51,8 @@ const canEditComment = (req, res, next) => {
         .then(commentID => {
             const { _id: ownerID } = commentID.owner
             const { _id: currentUserID } = req.session.currentUser
-            return currentUserID == ownerID
+            const { role: currentUserRole } = req.session.currentUser
+            return currentUserID == ownerID || currentUserRole === 'ADMIN'
                 ? next()
                 : res.render(`auth/login`, { errorMessage: `Please login to continue` })
         })
@@ -59,4 +60,4 @@ const canEditComment = (req, res, next) => {
 }
 
 
-module.exports = { checkEditFields, canEdit, canEditComment }
+module.exports = { checkEditFields, canEdit, canModifyComment }
