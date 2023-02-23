@@ -39,9 +39,7 @@ const parseRestrooms = restroomsArray => {
             location: {
                 type: 'Point',
                 coordinates: [longitude, latitude]
-            },
-            votes: [],
-            comments: []
+            }
         }
 
         return restroomObject

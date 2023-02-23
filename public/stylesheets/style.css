@@ -36,16 +36,16 @@ body {
     padding: 20px;
     background-color: rgba(46, 46, 46, 0.8);
     color: white;
-<<<<<<< HEAD
-=======
 }
 
 .comment-info img {
-    width: 80px;
-    height: 80px;
+    width: 40px;
 }
 
 .comment-details p {
     word-break: break-all;
->>>>>>> 763858c61feade8256be313d92cdb50fdbf7cb05
+}
+
+.comment-edit img {
+    width: 80px;
 }
