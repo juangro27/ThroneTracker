@@ -1,4 +1,5 @@
 const User = require("../models/User.model")
+const Comment = require("../models/Comment.model")
 
 const checkEditFields = (req, res, next) => {
 
@@ -28,5 +29,34 @@ const checkEditFields = (req, res, next) => {
             else next()
         })
 }
+const canEdit = (req, res, next) => {
+    const { id } = req.params
 
-module.exports = { checkEditFields }
+    if (req.session.currentUser._id === id || req.session.currentUser.role === 'ADMIN') {
+        next()
+    } else {
+        res.render(`auth/login`, { errorMessage: `Please login to continue` })
+        return
+    }
+}
+
+const canEditComment = (req, res, next) => {
+    const { commentID, } = req.params
+    Comment
+        .findById(commentID)
+        .populate({
+            path: 'owner',
+            select: '_id'
+        })
+        .then(commentID => {
+            const { _id: ownerID } = commentID.owner
+            const { _id: currentUserID } = req.session.currentUser
+            return currentUserID == ownerID
+                ? next()
+                : res.render(`auth/login`, { errorMessage: `Please login to continue` })
+        })
+        .catch(err => next(err))
+}
+
+
+module.exports = { checkEditFields, canEdit, canEditComment }

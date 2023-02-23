@@ -1,30 +1,32 @@
-<div class="container">
+<section class="search-container">
+    <div class="container d-flex flex-column justify-content-center align-items-start h-100">
+        <div class="search-title">
 
-    <h1>{{appTitle}} 🚽</h1>
-    <hr>
-
-    <div class="row justify-content-center pt-3">
-        {{#if errorMessage}}
-        <div id="errorMessage">
-            <p>{{errorMessage}}</p>
+            <h1 class="text-center">Search restrooms</h1>
         </div>
-        {{/if}}
-        <form action="/restrooms/search" method="POST">
-            <div class="col-md-6">
-                <div class="mb-3">
-                    <label for="search" class="form-label">Search</label>
-                    <input type="text" class="form-control" id="search" name="search">
-                    <input hidden type="text" class="form-control" id="lat" name="lat">
-                    <input hidden type="text" class="form-control" id="lng" name="lng">
-                    <input hidden type="text" class="form-control" id="location" name="location">
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Search</button>
-                </div>
+
+        <div class="row justify-content-center pt-3">
+            {{#if errorMessage}}
+            <div id="errorMessage">
+                <p>{{errorMessage}}</p>
             </div>
-        </form>
+            {{/if}}
+            <form action="/restrooms/search" method="POST">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <input type="text" class="form-control search-input" id="search" name="search" required>
+                        <input hidden type="text" class="form-control" id="lat" name="lat">
+                        <input hidden type="text" class="form-control" id="lng" name="lng">
+                        <input hidden type="text" class="form-control" id="location" name="location">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn block search-btn">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-<script src="/js/autoComplete.js"></script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&libraries=places&callback=initMap"></script>
+    <script src="/js/autoComplete.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCji4zNDq4v6CsYdnMnCoOOit-ug8MULXg&libraries=places&callback=initMap"></script>
+</section>

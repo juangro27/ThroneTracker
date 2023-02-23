@@ -11,6 +11,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="/stylesheets/index.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
 <body>
@@ -18,52 +19,72 @@
     <main>
 
         <section class="index-hero">
+
             <header>
-                <div class="logo">
-                    <a href="/">NeedRestroom</a>
-                </div>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/restrooms/search">Search</a>
-                        </li>
 
-                        <li>
-                            <a href="/about-us">About us</a>
-                        </li>
-                        <li>
-                            <a href="/contact">Contact</a>
-                        </li>
-                        {{#unless currentUser}}
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-color">
 
-                        <li>
-                            <a href="/signup">Sign up</a>
-                        </li>
-                        <li>
-                            <a href="/login">Login</a>
-                        </li>
-                        {{/unless}}
-                        {{#if currentUser}}
+                    <div class="container-fluid justify-content-between">
 
-                        <li>
-                            <a href="/users/my-profile">My profile</a>
-                        </li>
-                        <li>
-                            <a href="/logout">Logout</a>
-                        </li>
-                        {{/if}}
-                    </ul>
+                        <div class="logo">
+                            <a class="navbar-brand" href="/">NeedRestroom</a>
+                        </div>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse justify-content-lg-end" id="navbarNav">
+
+                            <ul class="navbar-nav navbar-color-text">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/restrooms/search">Search</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/about-us">About us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/contact">Contact</a>
+                                </li>
+                                {{#unless currentUser}}
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/signup">Sign up</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">Login</a>
+                                </li>
+                                {{/unless}}
+                                {{#if currentUser}}
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/users/my-profile">My profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/logout">Logout</a>
+                                </li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+
                 </nav>
+
             </header>
+
             <video autoplay muted loop>
                 <source src="/videos/index-hero.mp4" type="video/mp4">
             </video>
+
             <div class="container d-flex justify-content-center align-items-center index-title">
                 <div class="row">
-                    <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
                         <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus aspernatur debitis
                             sequi,
                             possimus
@@ -75,16 +96,19 @@
 
             </div>
         </section>
-        <section class="index-how-work d-flex justify-content-center align-items-center">
-            <div class="row  d-flex justify-content-center align-items-center ">
 
+        <section class="index-how-work d-flex justify-content-center align-items-center">
+            <div class="row w-100 d-flex justify-content-center align-items-center ">
                 <div class="col-10   ">
                     <div class="row ">
+
                         <div class="col-12 index-how-work-title">
                             <h2 class="text-center">How we work</h2>
                         </div>
-                        <div class="col-4">
-                            <div class=" step-one">
+
+                        <div class="col-lg-4">
+                            <div
+                                class="d-flex flex-column  justify-content-center align-items-center d-lg-block   step-one">
                                 <h2>Sign Up</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quas possimus
                                     magni
@@ -92,8 +116,10 @@
                                     repudiandae praesentium.</p>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="step-two">
+
+                        <div class="col-lg-4">
+                            <div
+                                class="d-flex flex-column justify-content-center align-items-center d-lg-block  step-two">
                                 <h2>Search</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quas possimus
                                     magni
@@ -102,8 +128,10 @@
                                     praesentium.</p>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="step-three">
+
+                        <div class="col-lg-4">
+                            <div
+                                class="d-flex flex-column justify-content-center align-items-center d-lg-block  step-three">
                                 <h2>Go</h2>
                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quas possimus
                                     magni
@@ -112,44 +140,53 @@
                                     praesentium.</p>
                             </div>
                         </div>
+
                     </div>
-
-
-
                 </div>
             </div>
 
 
         </section>
-        <section class="index-reviews">
-            <div class="row h-100 justify-content-center align-items-center">
 
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-12 index-reviews-title">
-                            <h2 class="text-center">Reviews about our service</h2>
+        <section class="index-reviews pb-5 pb-sm-0 ">
+
+            <div class="row w-100 ">
+
+                <div class="col-12">
+
+                    <div class="row w-100 ">
+                        <div class="col-12 ">
+                            <div class="index-reviews-title">
+                                <h2 class="text-center">Reviews about our service</h2>
+                            </div>
                         </div>
-                        <div class="col-4">
+
+                        <div class="col-lg-4  p-0">
                             <div
                                 class="align-self-start d-flex flex-column align-items-center justify-content-center review-one">
                                 <figure class="review-figure">
                                     <img src="/images/c1.webp" alt="" srcset="">
                                 </figure>
                                 <h3>Cristina cotilla</h3>
-                                <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. </q>
+                                <q class="w-80 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                </q>
                             </div>
                         </div>
-                        <div class="col-4">
+
+                        <div class="col-lg-4 p-0">
                             <div
-                                class="align-self-end d-flex flex-column align-items-center justify-content-center eview-two">
+                                class="align-self-end d-flex flex-column align-items-center justify-content-center review-two">
                                 <figure class="review-figure">
                                     <img src="/images/c2.webp" alt="" srcset="">
                                 </figure>
                                 <h3>Cristina golosa</h3>
-                                <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. </q>
+                                <q class="w-80 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                </q>
                             </div>
                         </div>
-                        <div class="col-4">
+
+                        <div class="col-lg-4 p-0">
+
                             <div
                                 class="align-self-start d-flex flex-column align-items-center justify-content-center review-three">
                                 <figure class="review-figure">
@@ -157,8 +194,9 @@
                                 </figure>
 
                                 <h3>Cristina sorprise</h3>
-                                <q>Lorem ipsum dolor sit amet consectetur adipisicing elit.</q>
+                                <q class="w-80 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</q>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -168,49 +206,54 @@
         </section>
     </main>
     <footer>
+
         <section class="footer-top">
             <div class="container ">
                 <div class="row">
                     <div class="col-md-12 col-lg-12">
-                        <div class="our-links row w-100">
-                            <div class="col-6 col-md-3">
-                                <h4>Company</h4>
+                        <div class="our-links row   w-100">
+                            <div
+                                class="col-6 my-3 m-md-0 col-md-3 d-flex flex-column align-items-start justify-content-center">
+                                <h4>About Us</h4>
                                 <ul>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
                                 </ul>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <h4>Company</h4>
+                            <div
+                                class="col-6 my-3 m-md-0 col-md-3 d-flex flex-column align-items-start justify-content-center">
+                                <h4>About Us</h4>
                                 <ul>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
                                 </ul>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <h4>Company</h4>
+                            <div
+                                class="col-6 my-3 m-md-0 col-md-3 d-flex flex-column align-items-start justify-content-center">
+                                <h4>About Us</h4>
                                 <ul>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
                                 </ul>
                             </div>
-                            <div class="col-6 col-md-3">
-                                <h4>Company</h4>
+                            <div
+                                class="col-6 my-3 m-md-0 col-md-3 d-flex flex-column align-items-start justify-content-center">
+                                <h4>About Us</h4>
                                 <ul>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
-                                    <li>About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
+                                    <li>Link About Us</li>
                                 </ul>
                             </div>
                         </div>
@@ -227,13 +270,14 @@
                         <a href="#">Privacy & Terms</a>
                         <a href="#">Contact Us</a>
                     </div>
-                    <div class="col-md-6  d-flex align-items-center justify-content-center">
+                    <div class="my-4 m-md-0 col-md-6  d-flex align-items-center justify-content-center">
                         <p class="footer-copyright">© 2023 NeedRestroom, Inc.</p>
                     </div>
                 </div>
             </div>
             </div>
         </section>
+
     </footer>
 
     <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

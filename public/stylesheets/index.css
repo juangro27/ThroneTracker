@@ -1,55 +1,7 @@
-body {
-    font-family: 'Quicksand', sans-serif;
-}
-
-img {
-    width: 100%;
-}
-
-header {
-    z-index: 3;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background-color: rgba(108, 88, 76, 0.8)
-}
-
-.logo {
-    height: 66px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo a {
-    text-decoration: none;
-    font-size: 50px;
-    font-weight: 700;
-    color: #FFFF;
-}
-
-header nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-}
-
-header nav ul li {
-    margin-left: 10px;
-}
-
-header nav ul li a {
-    text-decoration: none;
-    color: #FFFF;
-    font-weight: 500;
-    font-size: 18px;
-}
-
 .index-hero {
     position: relative;
     width: 100%;
+    min-height: 768px;
     height: 100vh;
 }
 
@@ -168,3 +120,5 @@ footer section {
     background-color: rgba(164, 126, 97, 0.593);
     padding: 40px 0;
 }
+
+@media only screen and (min-width: 768px) {}

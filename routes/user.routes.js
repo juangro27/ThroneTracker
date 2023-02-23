@@ -2,7 +2,7 @@ const router = require("express").Router()
 const bcrypt = require('bcryptjs')
 const User = require("../models/User.model")
 const { isLoggedIn, isAuthorized } = require('../middlewares/auth-rules')
-const { checkEditFields } = require('../middlewares/edit-rules')
+const { checkEditFields, canEdit } = require('../middlewares/edit-rules')
 const fileUploader = require('../config/cloudinary.config')
 const saltRounds = 10
 
@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 })
 
 
-router.get("/my-profile", isLoggedIn, isAuthorized("USER"), (req, res, next) => {
+router.get("/my-profile", isLoggedIn, (req, res, next) => {
 
     const { _id } = req.session.currentUser
 
@@ -28,7 +28,7 @@ router.get("/my-profile", isLoggedIn, isAuthorized("USER"), (req, res, next) => 
 })
 
 
-router.get("/:id", isLoggedIn, (req, res, next) => {
+router.get("/:id", isLoggedIn, canEdit, isAuthorized("ADMIN"), (req, res, next) => {
 
     const { id } = req.params
 
@@ -39,17 +39,18 @@ router.get("/:id", isLoggedIn, (req, res, next) => {
 })
 
 
-router.get("/:id/edit", (req, res, next) => {
-
+router.get("/:id/edit", isLoggedIn, canEdit, (req, res, next) => {
     const { id } = req.params
-
     User
         .findById(id)
         .then(user => res.render('users/user-edit', { user }))
         .catch(err => next(err))
+
+
+
 })
 
-router.post("/:id/edit", fileUploader.single('avatar'), checkEditFields, (req, res, next) => {
+router.post("/:id/edit", isLoggedIn, canEdit, fileUploader.single('avatar'), checkEditFields, (req, res, next) => {
 
     const { firstName, lastName, role, oldPwd, newPwd } = req.body
     const { id } = req.params
@@ -83,7 +84,7 @@ router.post("/:id/edit", fileUploader.single('avatar'), checkEditFields, (req, r
 })
 
 
-router.get("/:id/delete", (req, res, next) => {
+router.get("/:id/delete", isLoggedIn, isAuthorized("ADMIN"), (req, res, next) => {
 
     const { id } = req.params
 

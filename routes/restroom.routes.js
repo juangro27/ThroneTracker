@@ -3,23 +3,23 @@ const Restroom = require("../models/Restroom.model")
 const Comment = require("../models/Comment.model")
 const Vote = require("../models/Vote.model")
 const RestroomsApi = require("../services/restroomsApi.service")
+const { isLoggedIn, isAuthorized } = require('../middlewares/auth-rules')
 const { checkRestrooms } = require('../utils/checkRestrooms')
 const { parseRestrooms } = require('../utils/parseRestrooms')
-const mongoose = require("mongoose");
-const { populate } = require("../models/Restroom.model")
+const { canEditComment } = require('../middlewares/edit-rules')
 const { getScore } = require("../utils/getScore")
 
 
-router.get("/", (req, res, next) => {
+router.get("/", isLoggedIn, (req, res, next) => {
     res.render("index", { errorMessage: `The address is required` },)
 })
 
-router.get("/search", (req, res, next) => {
+router.get("/search", isLoggedIn, (req, res, next) => {
     res.render("restrooms/restroom-search")
 })
 
 
-router.post("/search", (req, res, next) => {
+router.post("/search", isLoggedIn, (req, res, next) => {
 
     if (req.body) {
 
@@ -38,7 +38,7 @@ router.post("/search", (req, res, next) => {
 })
 
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", isLoggedIn, (req, res, next) => {
 
     const { id } = req.params
     const promises = [
@@ -62,12 +62,7 @@ router.get("/:id", (req, res, next) => {
 })
 
 
-router.post("/:id/comments", (req, res, next) => {
-
-    res.send('POST COMENTARIOS DE BAÑOS')
-})
-
-router.post("/:id/comments/create", (req, res, next) => {
+router.post("/:id/comments/create", isLoggedIn, (req, res, next) => {
 
     const { comment } = req.body
     const { id: restroom } = req.params
@@ -82,7 +77,7 @@ router.post("/:id/comments/create", (req, res, next) => {
 
 })
 
-router.get("/:id/comments/:commentID/edit", (req, res, next) => {
+router.get("/:id/comments/:commentID/edit", isLoggedIn, canEditComment, (req, res, next) => {
     const { commentID, id } = req.params
     Comment
         .findById(commentID)
@@ -95,7 +90,7 @@ router.get("/:id/comments/:commentID/edit", (req, res, next) => {
 
 })
 
-router.post("/:id/comments/:commentID/edit", (req, res, next) => {
+router.post("/:id/comments/:commentID/edit", isLoggedIn, canEditComment, (req, res, next) => {
     const { commentID, id } = req.params
     const { comment } = req.body
     Comment
@@ -106,7 +101,7 @@ router.post("/:id/comments/:commentID/edit", (req, res, next) => {
 
 })
 
-router.get("/:id/comments/:commentID/delete", (req, res, next) => {
+router.get("/:id/comments/:commentID/delete", isLoggedIn, isAuthorized('ADMIN'), (req, res, next) => {
     const { commentID, id } = req.params
     Comment
         .findByIdAndDelete(commentID)
@@ -117,7 +112,7 @@ router.get("/:id/comments/:commentID/delete", (req, res, next) => {
 })
 
 
-router.post("/:id/votes/create", (req, res, next) => {
+router.post("/:id/votes/create", isLoggedIn, (req, res, next) => {
     const { vote } = req.body
     const { id } = req.params
     const { _id: ownerID } = req.session.currentUser

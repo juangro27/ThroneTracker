@@ -19,3 +19,15 @@ require('./routes')(app)
 require("./error-handling")(app);
 
 module.exports = app;
+
+function twoSum(numbers, target) {
+    const result = []
+    numbers.forEach(number => {
+        for (let i = 0; i < numbers.length; i++) {
+
+            if (number + numbers[i] === target) result.push(number, numbers[i])
+        }
+
+    })
+    return result
+}

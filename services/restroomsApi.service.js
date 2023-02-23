@@ -4,7 +4,7 @@ class ApiService {
     static _instace
     constructor() {
         this.api = axios.create({
-            baseURL: 'www.refugerestrooms.org/api'
+            baseURL: 'https://www.refugerestrooms.org/api/v1'
         })
     }
 
@@ -16,11 +16,11 @@ class ApiService {
     }
 
     getAllRestrooms = (page = 1, per_page = 10, offset = 0) => {
-        return this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms?page=${page}&per_page=${per_page}&offset=${offset}`)
+        return this.api.get(`/restrooms?page=${page}&per_page=${per_page}&offset=${offset}`)
 
     }
     getRestroomsByLocation = (lat, lng, page = 1, per_page = 10, offset = 0,) => {
-        return this.api.get(`https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=${page}&per_page=${per_page}&offset=${offset}&lat=${lat}&lng=${lng}`)
+        return this.api.get(`/restrooms/by_location?page=${page}&per_page=${per_page}&offset=${offset}&lat=${lat}&lng=${lng}`)
 
 
     }
