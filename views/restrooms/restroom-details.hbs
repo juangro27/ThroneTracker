@@ -74,15 +74,18 @@
                     <div class="d-flex align-items-center comment-info">
                         <img class="rounded-circle" src="{{owner.avatar}}"
                             alt="{{owner.firstName}}, {{owner.lastName}}">
-                        <p class="m-0 px-3 fw-bold">{{owner.firstName}} {{owner.lastName}}</p>
+                        <a class="m-0 px-3 fw-bold username-link" href="/users/{{owner.id}}">
+                            {{owner.firstName}} {{owner.lastName}}
+                        </a>
+
                     </div>
 
                     <div class="comment-details">
                         <p class="mt-3">{{comment}}</p>
                     </div>
 
+                    {{#if canEdit}}
                     <div class="row">
-                        {{#if canEdit}}
                         <div class="col-2 d-grid gap-2">
                             <a href="/restrooms/{{../restroom.id}}/comments/{{_id}}/edit"
                                 class="btn btn-outline-secondary btn-sm">Edit</a>
@@ -92,11 +95,19 @@
                             <a href="/restrooms/{{../restroom.id}}/comments/{{_id}}/delete"
                                 class="btn btn-outline-secondary btn-sm">Delete</a>
                         </div>
-                        {{/if}}
                         <div class="col-8 d-flex align-items-center justify-content-end">
                             <p class="m-0">{{createdAt}}</p>
                         </div>
                     </div>
+                    {{/if}}
+                    {{#unless canEdit}}
+
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center justify-content-end">
+                            <p class="m-0">{{createdAt}}</p>
+                        </div>
+                    </div>
+                    {{/unless}}
 
                 </div>
             </div>
