@@ -1,6 +1,10 @@
 const trElements = [...document.querySelectorAll(".restroom")]
 const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 const originCoords = JSON.parse(localStorage.getItem('location'))
+const icons = {
+  destination: '/images/marker2.png',
+  location: '/images/location.png',
+}
 
 let myMap
 
@@ -34,13 +38,40 @@ function initMap() {
 }
 
 
+
+
+function infoMarker(info) {
+
+  const [lng, lat] = info.coordinates
+
+  const infoWindow = new google.maps.InfoWindow({
+    maxWidth: 350,
+    pixelOffset: new google.maps.Size(0, -70)
+  });
+  return function (e) {
+    const content = '<div>' +
+      '<b>Restroom: ' + info.name + '</b>' +
+      '</div>';
+    infoWindow.setContent(content);
+    infoWindow.open(myMap);
+    infoWindow.setPosition(new google.maps.LatLng(lat, lng));
+  }
+};
+
+
+
+
 function setMarkers(markerInfo) {
   const [lng, lat] = markerInfo.coordinates
-  new google.maps.Marker({
+  const infoWindow = infoMarker(markerInfo)
+  const marker = new google.maps.Marker({
     map: myMap,
     position: { lng, lat },
-    title: markerInfo.name
+    title: markerInfo.name,
+    icon: icons.destination
   })
+  google.maps.event.addListener(marker, 'click', infoWindow);
+
 }
 
 
@@ -51,7 +82,8 @@ function getRouteDetails(destination) {
     const routeDetails = {
       origin: originCoords,
       destination: { lng, lat },
-      travelMode: 'WALKING'
+      travelMode: 'WALKING',
+
     }
     const service = new google.maps.DirectionsService()
     service.route(
@@ -65,7 +97,9 @@ function getRouteDetails(destination) {
 
 
 function renderRoute(routeDetails) {
-  const renderer = new google.maps.DirectionsRenderer()
+  const renderer = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+  new google.maps.Marker({ icon: icons.location, map: myMap, position: originCoords })
   renderer.setDirections(routeDetails)
   renderer.setMap(myMap)
+
 }

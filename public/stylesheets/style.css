@@ -33,6 +33,7 @@ img {
 .navbar-color-text li a {
     color: #FFFF !important;
     font-size: 1.2rem;
+    font-weight: 500;
 }
 
 
@@ -105,7 +106,7 @@ footer section {
     font-size: 3rem;
     font-weight: 700;
     color: #fff;
-    background-color: rgba(108, 88, 76, 0.8);
+    background-color: rgba(173, 193, 120, 0.8);
 }
 
 .search-input {
@@ -119,15 +120,50 @@ footer section {
     transform: none;
 }
 
-.search-btn {
+.green-btn {
     background-color: #ADC178;
     height: 50px;
     text-transform: uppercase;
     color: #fff;
     font-weight: 700;
     font-size: 1rem;
+
+}
+
+.green-btn:hover {
+    color: #fff;
 }
 
 .comment-edit img {
     width: 80px;
+}
+
+/* error message */
+
+#errorMessage p {
+    background-color: #f07167;
+    color: #fff;
+    height: 50px;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 15px 20px;
+    margin: 15px 0;
+}
+
+/* login page */
+
+.login-container {
+    min-height: 75vh;
+}
+
+/* signup page */
+
+.signup-container {
+    min-height: 700px;
+}
+
+/*                 */
+
+.icon-container {
+    width: 50px;
 }
