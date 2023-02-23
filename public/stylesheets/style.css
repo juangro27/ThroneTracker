@@ -37,8 +37,7 @@ img {
 
 
 .comment-info img {
-    width: 80px;
-    height: 80px;
+    width: 40px;
 }
 
 .comment-details p {
@@ -127,4 +126,8 @@ footer section {
     color: #fff;
     font-weight: 700;
     font-size: 1rem;
+}
+
+.comment-edit img {
+    width: 80px;
 }

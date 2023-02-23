@@ -1,10 +1,40 @@
-<div class="container">
-    <img style="width: 80px; height: 80px" src="{{comment.owner.avatar}}"
-        alt="{{comment.owner.firstName}}, {{comment.owner.lastName}}">
-    <h2>{{comment.owner.firstName}} {{comment.owner.lastName}} comment</h2>
-    <form action="/restrooms/{{restroom}}/comments/{{comment.id}}/edit" method="post">
-        <textarea name="comment" id="comment" cols="150" rows="10">{{comment.comment}}</textarea>
-        <p>Last modification: {{comment.updatedAt}}</p>
-        <input type="submit" value="Update"> <a href="/restrooms/{{restroom}}/">Back</a>
-    </form>
+<div class="container mt-4 mb-5">
+
+    <div class="d-flex align-items-center comment-edit">
+
+        <img class="rounded-circle" src="{{comment.owner.avatar}}"
+            alt="{{comment.owner.firstName}}, {{comment.owner.lastName}}">
+        <h2 class="m-0 px-3 fw-bold">{{comment.owner.firstName}} {{comment.owner.lastName}}</h2>
+    </div>
+
+    <div class="mt-4">
+
+        <form action="/restrooms/{{restroom}}/comments/{{comment.id}}/edit" method="post">
+            <textarea class="form-control" style="height: 100px" name="comment"
+                id="comment">{{comment.comment}}</textarea>
+
+            <div class="row d-flex align-items-center">
+
+                <div class="col-12 col-lg-8">
+                    <p class="m-0 mt-2">Last modification: {{comment.updatedAt}}</p>
+                </div>
+
+                <div class="col-12 col-lg-4">
+                    <div class="row">
+                        <div class="col-12 col-md-6 d-grid gap-2 ">
+                            <input type="submit" class="btn btn-outline-secondary px-5 mt-2" value="Save">
+                        </div>
+
+                        <div class="col-12 col-md-6 d-grid gap-2">
+                            <a href="/restrooms/{{restroom}}/" class="btn btn-outline-secondary px-5 mt-2">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container d-flex justify-content-center mt-4">
+        <a href="/" class="btn btn-secondary btn-lg">Volver a inicio</a>
+    </div>
 </div>
