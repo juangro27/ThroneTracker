@@ -1,11 +1,14 @@
-<div class="container">
-
-    <div class="row justify-content-center pt-3">
-
-        <div class="col-md-6">
-
+<div class="container mt-4 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-8 col-lg-6">
             <h1 class="text-center">Log in</h1>
             <hr>
+
+            {{#if errorMessage}}
+            <div class="d-flex justify-content-center" id="errorMessage">
+                <p>{{errorMessage}}</p>
+            </div>
+            {{/if}}
 
             <form action="/login" method="POST">
                 <div class="mb-3">
@@ -18,18 +21,15 @@
                     <input type="password" class="form-control" id="userPwd" name="userPwd">
                 </div>
 
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-dark block">Send</button>
+                <div class="d-grid mb-3 gap-2">
+                    <button type="submit" class="btn btn-outline-secondary px-5 mt-2">Send</button>
                 </div>
-
-                {{#if errorMessage}}
-                <div id="errorMessage">
-                    <p>{{errorMessage}}</p>
-                </div>
-                {{/if}}
-
             </form>
         </div>
+    </div>
+
+    <div class="container d-flex justify-content-center mt-4">
+        <a href="/" class="btn btn-secondary btn-lg">Home</a>
     </div>
 
 </div>

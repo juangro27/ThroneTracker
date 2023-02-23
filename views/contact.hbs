@@ -2,30 +2,31 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-6">
-            <h2>Contact</h2>
+        <div class="col-10 col-md-8 col-lg-6">
+
+            <h1 class="text-center">Contact</h1>
             <hr>
 
-
             <form action="/contact" method="post">
-                <label for="">Email</label>
-                <input type="email" name="email" id="">
-                <label for="">Subject</label>
-                <input type="text" name="subject" id="">
-                <label for="">Message</label>
+                <label class="mt-1 mb-2" for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email" placeholder="juanito@pipiroom.com">
 
-                <textarea class="form-control" style="height: 100px" type="text" name="message" id=""
-                    placeholder="My message..."></textarea>
+                <label class="mt-3 mb-2" for="subject">Subject</label>
+                <input class="form-control" type="text" name="subject" id="subject" placeholder="La maja de la Cristi">
+
+                <label class="mt-3 mb-2" for="message">Message</label>
+                <textarea class="form-control" style="height: 100px" type="text" name="message" id="message"
+                    placeholder="Buah que cool te ha quedado la paginita..."></textarea>
 
                 <div class="d-grid d-flex justify-content-end">
                     <input type="submit" class="btn btn-outline-secondary px-5 mt-2" value="Send">
                 </div>
             </form>
-
-
         </div>
-
     </div>
 
+    <div class="container d-flex justify-content-center mt-4">
+        <a href="/" class="btn btn-secondary btn-lg">Home</a>
+    </div>
 
 </div>
