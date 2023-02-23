@@ -7,7 +7,6 @@
             <div class="col-10 col-md-8 col-lg-6">
 
                 <h1 class="text-center">Sign Up</h1>
-                <hr>
 
                 <form action="/signup" method="POST" enctype="multipart/form-data">
 
@@ -50,60 +49,11 @@
                         </div>
                     </div>
 
-                    <h1 class="text-center">Sign Up</h1>
-                    {{#if errorMessage}}
-                    <div class="d-flex justify-content-center" id="errorMessage">
-                        <p>{{errorMessage}}</p>
-                    </div>
-                    {{/if}}
-                    <form action="/signup" method="POST" enctype="multipart/form-data">
 
-                        <div class="row">
-                            <div class="col-6 mb-3">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" name="firstName">
-                                <div class="form-text">Required</div>
-                            </div>
-
-                            <div class="col-6 mb-3">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" name="lastName">
-                                <div class="form-text">Required</div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email">
-                            <div class="form-text">Required</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="userPwd" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="userPwd" name="userPwd">
-                            <div class="form-text">Required</div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="avatar" class="form-label">Avatar image</label>
-                            <input type="file" class="form-control" id="avatar" name="avatar">
-                            <div class="form-text">Enter the URL of your desired profile picture (not required)</div>
-                        </div>
-
-                        <div class="d-grid gap-2 w-100 d-flex justify-content-center">
-                            <button type="submit" class="btn green-btn w-100">Send</button>
-                        </div>
-
-
-
-                    </form>
             </div>
         </div>
     </div>
 
-    <div class="container d-flex justify-content-center mt-4">
-        <a href="/" class="btn btn-secondary btn-lg">Home</a>
-    </div>
 
     </div>
 </section>

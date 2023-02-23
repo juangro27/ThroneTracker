@@ -131,6 +131,7 @@ footer section {
 }
 
 .green-btn:hover {
+    background-color: #ADC178;
     color: #fff;
 }
 
@@ -141,8 +142,9 @@ footer section {
 /* error message */
 
 #errorMessage p {
-    background-color: #f07167;
+    background-color: rgba(240, 112, 103, 0.735);
     color: #fff;
+    font-weight: 700;
     height: 50px;
     border-radius: 3px;
     display: inline-block;
