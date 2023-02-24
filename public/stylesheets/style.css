@@ -228,6 +228,11 @@ footer section {
     object-fit: cover;
 }
 
+.username-link {
+    text-decoration: none;
+    color: black;
+}
+
 @media (min-width: 768px) {
     .logo a {
         font-size: 38px;
