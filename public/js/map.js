@@ -2,7 +2,7 @@ const trElements = [...document.querySelectorAll(".restroom")]
 const restroomsIDs = trElements.map(element => element.getAttribute("data-id"))
 const originCoords = JSON.parse(localStorage.getItem('location'))
 const icons = {
-  destination: '/images/marker2.png',
+  destination: '/images/marker.png',
   location: '/images/location.png',
 }
 
